@@ -1,6 +1,7 @@
 -- Arianna Valencia and Viviana McIntyre
 -- Group 62
 -- CS340 Project - Natural Parks Database
+-- DDL SQL
 
 
 SET FOREIGN_KEY_CHECKS=0;
