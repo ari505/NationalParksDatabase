@@ -65,7 +65,7 @@ CREATE OR REPLACE TABLE Reservations_has_Participants(
     Participant_id int(11) NOT NULL,
     CONSTRAINT PRIMARY KEY (Reservation_id, Participant_id),
     CONSTRAINT FOREIGN KEY (Reservation_id) REFERENCES Reservations (reservation_id),
-    CONSTRAINT FOREIGN KEY (Participant_id) REFERENCES Participants (participant_id),
+    CONSTRAINT FOREIGN KEY (Participant_id) REFERENCES Participants (participant_id)
     ON DELETE CASCADE
 );
 
