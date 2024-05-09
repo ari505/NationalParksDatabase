@@ -1,6 +1,43 @@
 <!DOCTYPE html> 
-    <html> 
+<html> 
+
+    <head>
+        <meta charset="utf-8">
+        <title>Campgrounds</title>
+        <link href="style/style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+<div>
     <body>
-    
-    </body>
-    </html>
+    <h1>Campgrounds</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>campground_id</th>
+                <th>campground_name</th>            
+                <th>num_campsites</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Upper Pines</td>
+                <td>238</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <form>
+        <fieldset>
+            <legend>New Campground</legend>
+            <label>Campground name</label>
+                <input type="text">
+            <label> Number of Campsites</label>
+                <input type="text">
+        </fieldset>
+        <input type="button" value="Add New Campground">
+    </form>
+</div>
+</body>
+</html>
