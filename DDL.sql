@@ -115,6 +115,13 @@ Employee_id, camping_start_date, camping_end_date)
         (SELECT employee_id FROM Employees WHERE first_name = 'Noel' and last_name = 'Freeze'),
         "2024-07-25", "2024-07-28");
 
+INSERT INTO Reservations_has_Participants (Reservation_id, Participant_id)
+    VALUES
+    (1, 1),
+    (2, 2),
+    (2, 3);
+
+
 -- Print Tables with Sample Data:
 SELECT * FROM Employees;
 SELECT * FROM Participants;
