@@ -1,6 +1,75 @@
 <!DOCTYPE html> 
-    <html> 
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <title>Reservations Has Participants</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
     <body>
-    
-    </body>
-    </html>
+        <div>
+            <h1>Reservations has Participants</h1>
+            <table>
+                <!--Table headers-->
+                <thead>
+                    <tr>
+                        <th>Reservation_id</th>
+                        <th>Participant_id</th>
+                    </tr>
+                </thead>
+                <!--Table data-->
+                <!--Sample data hardcoded for now-->
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <!--forms-->
+        <div>
+            <form>
+                <fieldset>
+                    <legend>New Reservations has Participants</legend>
+                    <label>Participant_id</label>
+                        <input type="text">
+                    <label>Reservation_id</label>
+                        <input type="text">
+                </fieldset>
+                <input type="button" value="Add New Reservations has Participants">
+                <input type="button" value="Cancel">
+            </form>
+        </div>
+
+        <div>
+            <form>
+                <fieldset>
+                    <legend>Update Reservations has Participants</legend>
+                    <label>Participant_id</label>
+                        <input type="text">
+                    <label>Reservation_id</label>
+                        <input type="text">
+                </fieldset>
+                <input type="button" value="Save Update Reservations has Participants">
+                <input type="button" value="Cancel">
+            </form>
+        </div>
+
+        <div>
+            <form>
+                <fieldset>
+                    <legend>Delete Reservations has Participants</legend>
+                    <p>Are you sure you wish to delete the following?</p>
+                    <p>Reservation ID: 1, Program ID: 1</p>
+                </fieldset>
+                <input type="button" value="Delete">
+                <input type="button" value="Cancel">
+            </form>
+        </div>
+    </body> 
+
+</html>
