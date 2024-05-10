@@ -1,45 +1,55 @@
 <!DOCTYPE html> 
 <html>
-    <div>
-        <table>
-        <tr>
-            <th>employee_id</th>
-            <th>first_name</th>
-            <th>last_name</th>
-            <th>phone_number</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Viviana</td>
-            <td>McIntyre</td>
-            <td>505-987-6543</td>
-            <td>Edit</td>
-            <td>Delete</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Noel</td>
-            <td>Freeze</td>
-            <td>505-876-5467</td>
-            <td>Edit</td>
-            <td>Delete</td>
+    <head>
+        <meta charset="utf-8">
+        <title>Employees</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body> 
+        <div>
+            <h1>Employees</h1>
+            <table>
+            <tr>
+                <th>employee_id</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>phone_number</th>
             </tr>
-        </table>
-    </div>
-
-    <div>
-        <input type="button" value="Add Employee"> 
+            <tr>
+                <td>1</td>
+                <td>Viviana</td>
+                <td>McIntyre</td>
+                <td>505-987-6543</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Noel</td>
+                <td>Freeze</td>
+                <td>505-876-5467</td>
+                <td>Edit</td>
+                <td>Delete</td>
+                </tr>
+            </table>
+        </div>
+    <!--form-->
+        <div>
             <form>
                 <fieldset>
                     <legend>New Employee</legend>
                     <label>first name</label>
-                    
+                        <input type="text">
+                    <label>last name</label>
+                        <input type="text">
+                    <label>phone_number</label>
+                        <input type="text">
                 </fieldset>
+                <input type="button" value="Add New Employee">
+                <input type="button" value="Cancel">
             </form>
-
-
-
-
+        </div>
+    </body> 
 
 </html>
 
