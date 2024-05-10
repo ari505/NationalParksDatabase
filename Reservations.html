@@ -1,6 +1,79 @@
 <!DOCTYPE html> 
 <html> 
+
+    <head>
+        <meta charset="utf-8">
+        <title>Reservations</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+<div>
     <body>
-    
-    </body>
+    <h1>Reservations</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>reservation_id</th>
+                <th>Employee_id</th>
+                <th>date_created</th>
+                <th>Program_id</th>
+                <th>is_campground</th>
+                <th>campground_id</th>
+                <th>campting_start_date</th>
+                <th>camping_end_date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>2023-10-15</td>
+                <td>1</td>
+                <td>1</td>
+                <td>NULL</td>
+                <td>NULL</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>3</td>
+                <td>2023-12-06</td>
+                <td>NULL</td>
+                <td>1</td>
+                <td>2</td>
+                <td>2024-05-04</td>
+                <td>2024-05-11</td> 
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <form>
+        <fieldset>
+            <legend>New Reservation</legend>
+            <label>Employee_id</label>
+                <select name="Employee_id">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <label>date_created</label>
+                <input type="text">
+            <input type="radio" id="Campground" name="res_type" value="1">
+                <label for="Campground">Campground</label>
+            <input type="radio" id="Program" name="res_type" value="0">
+                <label for="Program">Program</label><br>
+            <br><label>campground_id</label>
+                <input type="text">
+            <label>Program_id</label>
+                <input type="text"><br>
+            <br><label>campting_start_date</label>
+                <input type="text">
+            <label>camping_end_date</label> 
+                <input type="text">
+        </fieldset>
+        <input type="button" value="Add New Reservation">
+    </form>
+</div>
+</body>
 </html>
