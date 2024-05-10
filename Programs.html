@@ -1,6 +1,33 @@
 <!DOCTYPE html> 
-    <html> 
-    <body>
-    
-    </body>
-    </html>
+<html> 
+    <div>
+        <table>
+            <!--Table headers-->
+            <thead>
+                <tr>
+                    <th>program_id</th>
+                    <th>name</th>
+                    <th>capacity</th>
+                    <th>location</th>
+                    <th>date_time</th>
+                    <tg>Employee_id</tg> <!--Foreign Key-->
+                </tr>
+            </thead>
+            <!--Table data-->
+            <!--Sample data hardcoded for now-->
+            ('Outdoor Restorative Yoga', 25,'Lower Pines', '2024-05-03 12:00:00', (SELECT employee_id FROM Employees WHERE first_name = 'Viviana' and last_name = 'McIntyre')),
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Outdoor Restorative Yoga</td>
+                    <td>25</td>
+                    <td>Lower Pines</td>
+                    <td>2024-05-03 12:00:00</td>
+                    <td>1</td>  <!--Viviana's employee_id hardcoded-->
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</html>
