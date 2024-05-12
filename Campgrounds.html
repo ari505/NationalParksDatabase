@@ -1,53 +1,59 @@
 <!DOCTYPE html> 
 <html> 
-
+<!--Header that specifies character encoding, sets title, and links CSS files-->
     <head>
-        <meta charset="utf-8">
-        <title>Campgrounds</title>
+        <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
+        <title>Campgrounds</title> 
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
 
-<body>
-    <nav>
-        <a href="index.html">Home</a> |
-        <a href="Campgrounds.html">Campgrounds</a> |
-        <a href="Reservations.html">Reservations</a> |
-        <a href="Employees.html">Employees</a> |
-        <a href="Participants.html">Participants</a> |
-        <a href="Programs.html">Programs</a> |
-        <a href="Reservations_has_Participants.html">Reservations_has_Participants</a>
-    </nav>
-    <h1>Campgrounds</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>campground_id</th>
-                <th>campground_name</th>            
-                <th>num_campsites</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Upper Pines</td>
-                <td>238</td>
-                <td>Edit</td>
-                <td>Delete</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div>
-    <form>
-        <fieldset>
-            <legend>New Campground</legend>
-            <label>Campground name</label>
-                <input type="text">
-            <label> Number of Campsites</label>
-                <input type="text">
-        </fieldset>
-        <input type="button" value="Add New Campground">
-        <input type="button" value="Cancel">
-    </form>
+    <body>
+        <!--nav bar links to all entity html files-->
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="Campgrounds.html">Campgrounds</a> |
+            <a href="Reservations.html">Reservations</a> |
+            <a href="Employees.html">Employees</a> |
+            <a href="Participants.html">Participants</a> |
+            <a href="Programs.html">Programs</a> |
+            <a href="Reservations_has_Participants.html">Reservations_has_Participants</a>
+        </nav>
+        <!--Page title-->
+        <h1>Campgrounds</h1>
+        <table>
+            <!--Table headers / Attributes -->
+            <thead>
+                <tr>
+                    <th>campground_id</th>
+                    <th>campground_name</th>            
+                    <th>num_campsites</th>
+                </tr>
+            </thead>
+            <!--Table data-->
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Upper Pines</td>
+                    <td>238</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+
+        <!--form to add new campground-->
+        <form>
+            <fieldset>
+                <legend>New Campground</legend>
+                <label>Campground name</label>
+                    <input type="text">
+                <label> Number of Campsites</label>
+                    <input type="text">
+            </fieldset>
+            <input type="button" value="Add New Campground">
+            <input type="button" value="Cancel">
+        </form>
 </body>
 </html>

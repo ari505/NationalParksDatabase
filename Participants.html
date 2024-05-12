@@ -1,12 +1,15 @@
 <!DOCTYPE html> 
+<!--Header that specifies character encoding, sets title, and links CSS files-->
 <html> 
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
         <title>Participants</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
+
     <body>
         <div>
+            <!--nav bar links to all entity html files-->
             <nav>
                 <a href="index.html">Home</a> |
                 <a href="Campgrounds.html">Campgrounds</a> |
@@ -16,9 +19,11 @@
                 <a href="Programs.html">Programs</a> |
                 <a href="Reservations_has_Participants.html">Reservations_has_Participants</a>
             </nav>
+            
+            <!--Table-->
             <h1>Participants</h1>
             <table>
-                <!--Table headers-->
+                <!--Table headers / Attributes -->
                 <thead>
                     <tr>
                         <th>participant_id</th>
@@ -30,7 +35,6 @@
                     </tr>
                 </thead>
                 <!--Table data-->
-                <!--Sample data hardcoded for now-->
                 <tbody>
                     <tr>
                         <td>1</td>
@@ -45,7 +49,8 @@
                 </tbody>
             </table>
         </div>
-    <!--form-->
+
+        <!--form to add new participant-->
         <div>
             <form>
                 <fieldset>
