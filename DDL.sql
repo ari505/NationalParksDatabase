@@ -117,10 +117,11 @@ Employee_id, camping_start_date, camping_end_date)
         "2024-07-25", "2024-07-28");
 
 INSERT INTO Reservations_has_Participants (Reservation_id, Participant_id)
-    VALUES
-    (1, 1),
-    (2, 2),
-    (2, 3);
+    VALUES 
+        ((SELECT reservation_id FROM Reservations
+            WHERE camping_start_date = '2024-05-04' and camping_end_date = '2024-05-11'),
+        (SELECT participant_id FROM Participants 
+            WHERE first_name = 'Andrew' and last_name = 'Kent' and phone_number = '564-798-0908'));
 
 
 -- Print Tables with Sample Data:
