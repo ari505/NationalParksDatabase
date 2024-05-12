@@ -1,95 +1,105 @@
 <!DOCTYPE html> 
 <html> 
-
+<!--Header that specifies character encoding, sets title, and links CSS files-->
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
         <title>Reservations</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
 
-<body>
-    <nav>
-        <a href="index.html">Home</a> |
-        <a href="Campgrounds.html">Campgrounds</a> |
-        <a href="Reservations.html">Reservations</a> |
-        <a href="Employees.html">Employees</a> |
-        <a href="Participants.html">Participants</a> |
-        <a href="Programs.html">Programs</a> |
-        <a href="Reservations_has_Participants.html">Reservations_has_Participants</a>
-    </nav>
-    <h1>Reservations</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>reservation_id</th>
-                <th>employee_id</th>
-                <th>date_created</th>
-                <th>program_id</th>
-                <th>is_campground</th>
-                <th>campground_id</th>
-                <th>campting_start_date</th>
-                <th>camping_end_date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>2023-10-15</td>
-                <td>1</td>
-                <td>1</td>
-                <td>NULL</td>
-                <td>NULL</td>
-                <td>NULL</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>3</td>
-                <td>2023-12-06</td>
-                <td>NULL</td>
-                <td>1</td>
-                <td>2</td>
-                <td>2024-05-04</td>
-                <td>2024-05-11</td> 
-            </tr>
-        </tbody>
-    </table>
+    <body>
+        <!--nav bar links to all entity html files-->
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="Campgrounds.html">Campgrounds</a> |
+            <a href="Reservations.html">Reservations</a> |
+            <a href="Employees.html">Employees</a> |
+            <a href="Participants.html">Participants</a> |
+            <a href="Programs.html">Programs</a> |
+            <a href="Reservations_has_Participants.html">Reservations_has_Participants</a>
+        </nav>
+        
+        <!--Table-->
+        <h1>Reservations</h1>
+        <table>
+            <!--Table headers / Attributes -->
+            <thead>
+                <tr>
+                    <th>reservation_id</th>
+                    <th>employee_id</th>
+                    <th>date_created</th>
+                    <th>program_id</th>
+                    <th>is_campground</th>
+                    <th>campground_id</th>
+                    <th>campting_start_date</th>
+                    <th>camping_end_date</th>
+                </tr>
+            </thead>
+            <!--Table data-->
+            <!--Sample data hardcoded for now-->
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2023-10-15</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>2023-12-06</td>
+                    <td>NULL</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2024-05-04</td>
+                    <td>2024-05-11</td> 
+                </tr>
+            </tbody>
+        </table>
 
-    <form>
-        <fieldset>
-            <legend>New Reservation</legend>
-            <label>employee_id</label> <!--foreign key-->
-                <select name="employee_id">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            <label>date_created</label>
-                <input type="text">
-            <input type="radio" id="Campground" name="res_type" value="1">
-                <label for="Campground">Campground</label>
-            <input type="radio" id="Program" name="res_type" value="0">
-                <label for="Program">Program</label><br>
-            <br><label>campground_id</label> <!--foreign key-->
-                <select name="campground_id">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            <label>program_id</label> <!--foreign key-->
-                <select name="program_id">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            <br><label>camping_start_date</label> 
-                <input type="text">
-            <label>camping_end_date</label> 
-                <input type="text">
-        </fieldset>
-        <input type="button" value="Add New Reservation">
-        <input type="button" value="Cancel">
-    </form>
-    
-</body>
+        <!--form to add new reservation-->
+        <form>
+            <fieldset>
+                <legend>New Reservation</legend>
+                <!--dropdown menu for employee_id-->
+                <label>employee_id</label> <!--foreign key-->
+                    <select name="employee_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                <label>date_created</label>
+                    <input type="text">
+                <input type="radio" id="Campground" name="res_type" value="1">
+                    <label for="Campground">Campground</label>
+                <input type="radio" id="Program" name="res_type" value="0">
+                    <label for="Program">Program</label><br>
+                <!--dropdown menu for employee_id-->
+                <br><label>campground_id</label> <!--foreign key-->
+                    <select name="campground_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                <!--dropdown menu for employee_id-->
+                <label>program_id</label> <!--foreign key-->
+                    <select name="program_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                <br><label>camping_start_date</label> 
+                    <input type="text">
+                <label>camping_end_date</label> 
+                    <input type="text">
+            </fieldset>
+            <input type="button" value="Add New Reservation">
+            <input type="button" value="Cancel">
+        </form>
+        
+    </body>
 </html>

@@ -1,12 +1,15 @@
 <!DOCTYPE html> 
 <html>
+<!--Header that specifies character encoding, sets title, and links CSS files-->
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
         <title>Employees</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
+
     <body> 
         <div>
+            <!--nav bar links to all entity html files-->
             <nav>
                 <a href="index.html">Home</a> |
                 <a href="Campgrounds.html">Campgrounds</a> |
@@ -16,33 +19,42 @@
                 <a href="Programs.html">Programs</a> |
                 <a href="Reservations_has_Participants.html">Reservations_has_Participants</a>
             </nav>
+
+            <!--Table-->
             <h1>Employees</h1>
             <table>
-            <tr>
-                <th>employee_id</th>
-                <th>first_name</th>
-                <th>last_name</th>
-                <th>phone_number</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Viviana</td>
-                <td>McIntyre</td>
-                <td>505-987-6543</td>
-                <td>Edit</td>
-                <td>Delete</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Noel</td>
-                <td>Freeze</td>
-                <td>505-876-5467</td>
-                <td>Edit</td>
-                <td>Delete</td>
-                </tr>
+                <!--Table headers / Attributes -->
+                <thead>
+                    <tr>
+                        <th>employee_id</th>
+                        <th>first_name</th>
+                        <th>last_name</th>
+                        <th>phone_number</th>
+                    </tr>
+                </thead>
+                <!--Table data-->
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Viviana</td>
+                        <td>McIntyre</td>
+                        <td>505-987-6543</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Noel</td>
+                        <td>Freeze</td>
+                        <td>505-876-5467</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                        </tr>
+                </tbody>
             </table>
         </div>
-    <!--form-->
+        
+        <!--form to add new employee-->
         <div>
             <form>
                 <fieldset>
