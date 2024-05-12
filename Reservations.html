@@ -22,9 +22,9 @@
         <thead>
             <tr>
                 <th>reservation_id</th>
-                <th>Employee_id</th>
+                <th>employee_id</th>
                 <th>date_created</th>
-                <th>Program_id</th>
+                <th>program_id</th>
                 <th>is_campground</th>
                 <th>campground_id</th>
                 <th>campting_start_date</th>
@@ -58,8 +58,8 @@
     <form>
         <fieldset>
             <legend>New Reservation</legend>
-            <label>Employee_id</label>
-                <select name="Employee_id">
+            <label>employee_id</label> <!--foreign key-->
+                <select name="employee_id">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -70,11 +70,19 @@
                 <label for="Campground">Campground</label>
             <input type="radio" id="Program" name="res_type" value="0">
                 <label for="Program">Program</label><br>
-            <br><label>campground_id</label>
-                <input type="text">
-            <label>Program_id</label>
-                <input type="text"><br>
-            <br><label>campting_start_date</label>
+            <br><label>campground_id</label> <!--foreign key-->
+                <select name="campground_id">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <label>program_id</label> <!--foreign key-->
+                <select name="program_id">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <br><label>camping_start_date</label> 
                 <input type="text">
             <label>camping_end_date</label> 
                 <input type="text">

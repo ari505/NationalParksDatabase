@@ -21,8 +21,8 @@
                 <!--Table headers-->
                 <thead>
                     <tr>
-                        <th>Reservation_id</th>
-                        <th>Participant_id</th>
+                        <th>reservation_id</th>
+                        <th>participant_id</th>
                     </tr>
                 </thead>
                 <!--Table data-->
@@ -44,9 +44,9 @@
             <form>
                 <fieldset>
                     <legend>New Reservations has Participants</legend>
-                    <label>Participant_id</label>
+                    <label>participant_id</label> <!--foreign key-->
                         <input type="text">
-                    <label>Reservation_id</label>
+                    <label>reservation_id</label> <!--foreign key-->
                         <input type="text">
                 </fieldset>
                 <input type="button" value="Add New Reservations has Participants">
@@ -57,10 +57,10 @@
         <div>
             <form>
                 <fieldset>
-                    <legend>Update Reservations has Participants</legend>
-                    <label>Participant_id</label>
+                    <legend>Update Reservations has Participants entry</legend>
+                    <label>participant_id</label> <!--foreign key-->
                         <input type="text">
-                    <label>Reservation_id</label>
+                    <label>reservation_id</label> <!--foreign key-->
                         <input type="text">
                 </fieldset>
                 <input type="button" value="Save Update Reservations has Participants">
@@ -71,9 +71,9 @@
         <div>
             <form>
                 <fieldset>
-                    <legend>Delete Reservations has Participants</legend>
+                    <legend>Delete Reservations has Participants entry</legend>
                     <p>Are you sure you wish to delete the following?</p>
-                    <p>Reservation ID: 1, Program ID: 1</p>
+                    <p>reservation_id: 1, program_id: 1</p>
                 </fieldset>
                 <input type="button" value="Delete">
                 <input type="button" value="Cancel">
