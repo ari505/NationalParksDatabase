@@ -1,9 +1,9 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html> 
-<!--Header that specifies character encoding, sets title, and links CSS files-->
+
     <head>
         <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
-        <title>Campgrounds</title> 
+        <title>Reservations</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
 
@@ -18,40 +18,46 @@
             <a href="Programs.html">Programs</a> |
             <a href="Reservations_has_Participants.html">Reservations_has_Participants</a>
         </nav>
-        <!--Page title-->
-        <h1>Campgrounds</h1>
+
+    <div>
+        <h1>Reservation Participants</h1>
+        <!--Table-->
         <table>
             <!--Table headers / Attributes -->
             <thead>
                 <tr>
+                    <th>Reservation Participant ID</th>
+                    <th>Reservation ID</th>
+                    <th>Participant ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Program ID</th>
                     <th>Campground ID</th>
-                    <th>Campground Name</th>            
-                    <th>Number of Campsites</th>
+
                 </tr>
             </thead>
             <!--Table data-->
+            <!--Sample data hardcoded for now-->
             <tbody>
                 <tr>
+                    <td>5</td>
+                    <td>4</td>
                     <td>1</td>
-                    <td>Upper Pines</td>
-                    <td>238</td>
+                    <td>Andrew</td>
+                    <td>Kent</td>
+                    <td>NULL</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>Sharon</td>
+                    <td>Myers</td>
+                    <td>1</td>
+                    <td>NULL</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div>
-
-        <!--form to add new campground-->
-        <form>
-            <fieldset>
-                <legend>New Campground</legend>
-                <label>Campground name</label>
-                    <input type="text">
-                <label> Number of Campsites</label>
-                    <input type="text">
-            </fieldset>
-            <input type="button" value="Add New Campground">
-            <input type="button" value="Cancel">
-        </form>
-</body>
 </html>
