@@ -60,15 +60,9 @@ CREATE OR REPLACE TABLE Reservations (
     camping_start_date date,
     camping_end_date date,
     PRIMARY KEY (reservation_id),
-    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    FOREIGN KEY (campground_id) REFERENCES Campgrounds(campground_id)
-    ON DELETE SET NULL
-    ON UPDATE SET NULL,
+    FOREIGN KEY (employee_id) REFERENCES Employees(employee_id),
+    FOREIGN KEY (campground_id) REFERENCES Campgrounds(campground_id),
     FOREIGN KEY (program_id) REFERENCES Programs(program_id)
-    ON DELETE SET NULL
-    ON UPDATE SET NULL
 );
 
 -- Create Reservations_has_Participants table
@@ -81,8 +75,6 @@ CREATE OR REPLACE TABLE Reservations_has_Participants (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
     FOREIGN KEY (participant_id) REFERENCES Participants (participant_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
 );
 
 
