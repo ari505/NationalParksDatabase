@@ -50,7 +50,8 @@ SELECT date_created, is_campground, campground_id, program_id,
 employee_id, camping_start_date, camping_end_date FROM Reservations 
 
 --JOINS Reservations, Participants, Reservations_has_Participants to display relevant information in Reservations_has_Participants browse table
-SELECT Reservations.reservation_id, Participants.participant_id, Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
+SELECT Reservations_has_Participants.reservation_participant_id, Reservations.reservation_id, Participants.participant_id, 
+        Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
     INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
     INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
         WHERE Participants.first_name = 'Andrew' and last_name = 'Kent' and phone_number = '564-798-0908';
