@@ -1,5 +1,5 @@
 // Get the objects we need to modify
-let addReservationForm = document.getElementById('add-reservation-form-ajax');
+let addReservationForm = document.getElementById('/add-reservation-form-ajax');
 
 // Modify the objects we need
 addReservationForm.addEventListener("submit", function (e) {
@@ -9,7 +9,7 @@ addReservationForm.addEventListener("submit", function (e) {
 
     // Get form fields we need to get data from
     let inputEmployeeId = document.getElementById("employee_id");
-    let inputDateCreated = document.getElementById("date_created");
+    let inputDateTimeCreated = document.getElementById("date_time_created");
     let inputIsCampground = document.getElementById("is_campground");
     let inputCampgroundId = document.getElementById("campground_id");
     let inputProgramId = document.getElementById("program_id");
@@ -18,7 +18,7 @@ addReservationForm.addEventListener("submit", function (e) {
 
     // Get values from form fields
     let employeeIdValue = inputEmployeeId.value;
-    let dateCreatedValue = inputDateCreated.value;
+    let dateTimeCreatedValue = inputDateTimeCreated.value;
     let isCampgroundValue = inputIsCampground.value;
     let campgroundIdValue = inputCampgroundId.value;
     let programIdValue = inputProgramId.value;
@@ -28,7 +28,7 @@ addReservationForm.addEventListener("submit", function (e) {
     // Put data we want to send in a Javascript object
     let data = {
         employee_id: employeeIdValue,
-        date_created: dateCreatedValue,
+        date_time_created: dateTimeCreatedValue,
         is_campground: isCampgroundValue,
         campground_id: campgroundIdValue,
         program_id: programIdValue,
@@ -36,9 +36,12 @@ addReservationForm.addEventListener("submit", function (e) {
         camping_end_date: campingEndDateValue
     }
 
+     // Print data to console 
+     console.log(data)
+
     // Set up our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "add-reservation-ajax", true);
+    xhttp.open("POST", "/add_reservation", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -50,12 +53,12 @@ addReservationForm.addEventListener("submit", function (e) {
 
             // Clear the input fields for another transaction
             inputEmployeeId.value = '';
-            inputDateCreated.value = '';
+            inputDateTimeCreated.value = '';
             inputIsCampground.value = '';
             inputCampgroundId.value = '';
             inputProgramId.value = '';
-            inputCampingStartDate = '';
-            inputCampingEndDate = '';
+            inputCampingStartDate.value = '';
+            inputCampingEndDate.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -78,18 +81,18 @@ addRowToTable = (data) => {
     let newRow = parsedData[parsedData.length - 1]
 
     // Create a row and 4 cells
-    let row = document.createElement("TR");
-    let employeeIdCell = document.createElement("TD");
-    let dateCreatedCell = document.createElement("TD");
-    let isCampgroundCell = document.createAttribute("TD");
-    let campgroundIdCell = document.createElement("TD");
-    let programIdCell = document.createElement("TD");
-    let campingStartDateCell = document.createElement("TD");
-    let campingEndDateCell = document.createElement("TD");
+    let row = document.createElement("tr");
+    let employeeIdCell = document.createElement("td");
+    let dateTimeCreatedCell = document.createElement("td");
+    let isCampgroundCell = document.createAttribute("td");
+    let campgroundIdCell = document.createElement("td");
+    let programIdCell = document.createElement("td");
+    let campingStartDateCell = document.createElement("td");
+    let campingEndDateCell = document.createElement("td");
 
     // Fill the cells with correct data
     employeeIdCell.innerText = newRow.employee_id;
-    dateCreatedCell.innerText = newRow.date_created;
+    dateTimeCreatedCell.innerText = newRow.date_created;
     isCampgroundCell.innerText = newRow.is_campground;
     campgroundIdCell.innerText = newRow.campground_id;
     programIdCell.innerText = newRow.program_id;
@@ -98,7 +101,7 @@ addRowToTable = (data) => {
 
     // Add the cells to the row
     row.appendChild(employeeIdCell);
-    row.appendChild(dateCreatedCell);
+    row.appendChild(dateTimeCreatedCell);
     row.appendChild(isCampgroundCell);
     row.appendChild(campgroundIdCell);
     row.appendChild(programIdCell);
