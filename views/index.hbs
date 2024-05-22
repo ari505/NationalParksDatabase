@@ -4,9 +4,8 @@
 <p>If you see this text, the server is <strong>definitely</strong> working!</p>
 
 {{!-- Create a table --}}
-<table>
+<table id="Reservations-table">
 
-    {{!-- Header section --}}
     <thead>
 
         {{!-- For just the first row, we print each key of the row object as a header cell so we
@@ -38,3 +37,48 @@
         {{/each}}
     </tbody>
 </table>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a new reservation.</h2>
+<p>To add a new reservation, please enter appropriate information below and click 'Submit'!</p>
+<form id="add-reservation-form-ajax">
+            <fieldset>
+                <legend>New Reservation</legend>
+                <!--dropdown menu for employee_id-->
+                <label for="employee_id">Employee ID</label> <!--foreign key-->
+                    <select name="employee_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                <label>Date Created</label>
+                    <input type="text">
+                <input type="radio" id="Campground" name="res_type" value="1">
+                    <label for="Campground">Campground</label>
+                <input type="radio" id="Program" name="res_type" value="0">
+                    <label for="Program">Program</label><br>
+                <!--dropdown menu for campground_id-->
+                <br><label>Campground ID</label> <!--foreign key-->
+                    <select name="campground_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                <!--dropdown menu for program_id-->
+                <label>Program ID</label> <!--foreign key-->
+                    <select name="program_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                <br><br><label>Camping Start Date</label> 
+                    <input type="text">
+                <label>Camping End Date</label> 
+                    <input type="text">
+            </fieldset>
+            <input type="button" value="Add New Reservation">
+            <input type="button" value="Cancel">
+        </form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_reservation.js"></script>
