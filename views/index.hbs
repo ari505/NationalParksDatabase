@@ -46,37 +46,40 @@
                 <legend>New Reservation</legend>
                 <!--dropdown menu for employee_id-->
                 <label for="employee_id">Employee ID</label> <!--foreign key-->
-                    <select name="employee_id">
+                    <select id="employee_id" name="employee_id">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="NULL">NULL</option>
                     </select>
-                <label>Date Created</label>
-                    <input type="text">
-                <input type="radio" id="Campground" name="res_type" value="1">
-                    <label for="Campground">Campground</label>
-                <input type="radio" id="Program" name="res_type" value="0">
-                    <label for="Program">Program</label><br>
+                <label for="date_created">Date Created</label>
+                    <input type="text" id="date_created" name="date_created">
+                <input type="radio" id="campground" name="is_campground" value="1">
+                    <label for="campground">Campground</label>
+                <input type="radio" id="program" name="is_campground" value="0">
+                    <label for="program">Program</label><br>
                 <!--dropdown menu for campground_id-->
-                <br><label>Campground ID</label> <!--foreign key-->
-                    <select name="campground_id">
+                <br><label for="campground_id">Campground ID</label> <!--foreign key-->
+                    <select id="campground_id" name="campground_id">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="NULL">NULL</option>
                     </select>
                 <!--dropdown menu for program_id-->
-                <label>Program ID</label> <!--foreign key-->
-                    <select name="program_id">
+                <label for="program_id">Program ID</label> <!--foreign key-->
+                    <select id="program_id" name="program_id">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="NULL">NULL</option>
                     </select>
-                <br><br><label>Camping Start Date</label> 
-                    <input type="text">
-                <label>Camping End Date</label> 
-                    <input type="text">
+                <br><br><label for="camping_start_date">Camping Start Date</label> 
+                    <input type="text" id="camping_start_date" name="camping_start_date">
+                <label for="camping_end_date">Camping End Date</label> 
+                    <input type="text" id="camping_end_date" name="camping_end_date">
             </fieldset>
-            <input type="button" value="Add New Reservation">
+            <input type="submit" value="Submit Reservation!">
             <input type="button" value="Cancel">
         </form>
 

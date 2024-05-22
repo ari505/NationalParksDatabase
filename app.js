@@ -48,29 +48,15 @@ app.post('/add-reservation-ajax', function(req, res) {
     if (isNaN(employee_id)) {
         employee_id = 'NULL'
     }
-
-    let date_created = parseInt(data.date_created);
     
     let program_id = parseInt(data.program_id);
     if (isNaN(program_id)) {
         program_id = 'NULL'
     }
 
-    let is_campground = parseInt(data.is_campground);
-
     let campground_id = parseInt(data.campground_id);
     if (isNaN(campground_id)) {
         campground_id = 'NULL'
-    }
-
-    let camping_start_date = parseInt(data.camping_start_date);
-    if (isNaN(camping_start_date)) {
-        camping_start_date = 'NULL'
-    }
-
-    let camping_end_date = parseInt(data.camping_end_date);
-    if (isNaN(camping_end_date)) {
-        camping_end_date = 'NULL'
     }
 
     // Create query and run it in database
