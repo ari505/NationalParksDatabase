@@ -84,7 +84,7 @@ addRowToTable = (data) => {
     let row = document.createElement("tr");
     let employeeIdCell = document.createElement("td");
     let dateTimeCreatedCell = document.createElement("td");
-    let isCampgroundCell = document.createAttribute("td");
+    let isCampgroundCell = document.createElement("td");
     let campgroundIdCell = document.createElement("td");
     let programIdCell = document.createElement("td");
     let campingStartDateCell = document.createElement("td");
