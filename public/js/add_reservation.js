@@ -1,5 +1,5 @@
 // Get the objects we need to modify
-let addReservationForm = document.getElementById('add-reservation-form-ajax');
+let addReservationForm = document.getElementById('/add-reservation-form-ajax');
 
 // Modify the objects we need
 addReservationForm.addEventListener("submit", function (e) {
@@ -36,9 +36,12 @@ addReservationForm.addEventListener("submit", function (e) {
         camping_end_date: campingEndDateValue
     }
 
+     // Print data to console 
+     console.log(data)
+
     // Set up our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "add-reservation-ajax", true);
+    xhttp.open("POST", "/add_reservation", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -54,8 +57,8 @@ addReservationForm.addEventListener("submit", function (e) {
             inputIsCampground.value = '';
             inputCampgroundId.value = '';
             inputProgramId.value = '';
-            inputCampingStartDate = '';
-            inputCampingEndDate = '';
+            inputCampingStartDate.value = '';
+            inputCampingEndDate.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

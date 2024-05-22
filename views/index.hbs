@@ -41,7 +41,7 @@
 {{!-- Form to add a record to the table  --}}
 <h2>Add a new reservation.</h2>
 <p>To add a new reservation, please enter appropriate information below and click 'Submit Reservation'!</p>
-<form id="add-reservation-form-ajax">
+<form id="/add-reservation-form-ajax">
             <fieldset>
                 <legend>New Reservation</legend>
                 <!--dropdown menu for employee_id-->
@@ -54,9 +54,9 @@
                     </select>
                 <label for="date_created">Date Created</label>
                     <input type="datetime-local" id="date_created" name="date_created" value="2024-05-22T11:01" />
-                <input type="radio" id="campground" name="is_campground" value="1">
+                <input type="radio" id="is_campground" name="is_campground" value="1"/>
                     <label for="campground">Campground</label>
-                <input type="radio" id="program" name="is_campground" value="0">
+                <input type="radio" id="is_campground" name="is_campground" value="0"/>
                     <label for="program">Program</label><br>
                 <!--dropdown menu for campground_id-->
                 <br><label for="campground_id">Campground ID</label> <!--foreign key-->

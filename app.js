@@ -39,7 +39,7 @@ app.get('/', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query                                     // will process this file, before sending the finished HTML to the client.
 
-app.post('/add-reservation-ajax', function(req, res) {
+app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
 
@@ -63,7 +63,7 @@ app.post('/add-reservation-ajax', function(req, res) {
     // Create query and run it in database
     query1 = `INSERT INTO Reservations (date_created, is_campground, campground_id, program_id, employee_id, camping_start_date, camping_end_date) 
             VALUES
-                ('${data.date_created}', ${data.is_campground}, ${campground_id}, ${program_id}, ${employee_id}, '${camping_start_date}', '${camping_end_date}')`;
+                ('${data.date_created}', ${data.is_campground}, ${data.campground_id}, ${data.program_id}, ${data.employee_id}, '${data.camping_start_date}', '${data.camping_end_date}')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
@@ -74,7 +74,7 @@ app.post('/add-reservation-ajax', function(req, res) {
         }
         else {
             // If there was no error, perform a SELECT * on Reservations
-            query2 = `SELECT * FROM Reservations`;
+            query2 = `SELECT * FROM Reservations;`;
             db.pool.query(query2, function(error, rows, fields) {
                 // If there was an error on the second query, send a 400
                 if (error) {
