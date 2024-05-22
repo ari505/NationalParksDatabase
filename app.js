@@ -43,7 +43,7 @@ app.post('/add-reservation-ajax', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
 
-    // Capture NULL values
+/*    // Capture NULL values
     let employee_id = parseInt(data.employee_id);
     if (isNaN(employee_id)) {
         employee_id = 'NULL'
@@ -57,7 +57,8 @@ app.post('/add-reservation-ajax', function(req, res) {
     let campground_id = parseInt(data.campground_id);
     if (isNaN(campground_id)) {
         campground_id = 'NULL'
-    }
+    } 
+*/
 
     // Create query and run it in database
     query1 = `INSERT INTO Reservations (date_created, is_campground, campground_id, program_id, employee_id, camping_start_date, camping_end_date) 
