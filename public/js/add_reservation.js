@@ -92,7 +92,7 @@ addRowToTable = (data) => {
 
     // Fill the cells with correct data
     employeeIdCell.innerText = newRow.employee_id;
-    dateTimeCreatedCell.innerText = newRow.date_created;
+    dateTimeCreatedCell.innerText = newRow.date_time_created;
     isCampgroundCell.innerText = newRow.is_campground;
     campgroundIdCell.innerText = newRow.campground_id;
     programIdCell.innerText = newRow.program_id;
