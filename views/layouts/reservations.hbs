@@ -1,0 +1,106 @@
+<!-- index.hbs -->
+
+<h1>ThE SeRvEr Is RuNnIng!!!</h1>
+<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+
+{{!-- Create a table --}}
+<table id="reservations-table">
+
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the reservation_id, employee_id, date_time_created, program_id, is_campground, campground_id, camping_start_date, camping_end_date, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.reservation_id}}</td>
+            <td>{{this.employee_id}}</td>
+            <td>{{this.date_time_created}}</td>
+            <td>{{this.program_id}}</td>
+            <td>{{this.is_campground}}</td>
+            <td>{{this.campground_id}}</td> 
+            <td>{{this.camping_start_date}}</td>
+            <td>{{this.camping_end_date}}</td> 
+            <td><button onclick="delete_reservation({{this.id}})">Delete</button></td> 
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a new reservation.</h2>
+<p>To add a new reservation, please enter appropriate information below and click 'Submit Reservation'!</p>
+<form id="add-reservation-form-ajax">
+            <fieldset>
+                <legend>New Reservation</legend>
+                <!--dropdown menu for employee_id-->
+                <label for="employee_id">Employee ID</label> <!--foreign key-->
+                    <select id="employee_id" name="employee_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="NULL">NULL</option>
+                    </select>
+                <label for="date_created">Date Created</label>
+                    <input type="datetime-local" id="date_created" name="date_created" value="2024-05-22T11:01" />
+                <input type="radio" id="campground" name="is_campground" value="1">
+                    <label for="campground">Campground</label>
+                <input type="radio" id="program" name="is_campground" value="0">
+                    <label for="program">Program</label><br>
+                <!--dropdown menu for campground_id-->
+                <br><label for="campground_id">Campground ID</label> <!--foreign key-->
+                    <select id="campground_id" name="campground_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="NULL">NULL</option>
+                    </select>
+                <!--dropdown menu for program_id-->
+                <label for="program_id">Program ID</label> <!--foreign key-->
+                    <select id="program_id" name="program_id">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="NULL">NULL</option>
+                    </select>
+                <br><br><label for="camping_start_date">Camping Start Date</label> 
+                    <input type="text" id="camping_start_date" name="camping_start_date">
+                <label for="camping_end_date">Camping End Date</label> 
+                    <input type="text" id="camping_end_date" name="camping_end_date">
+            </fieldset>
+            <input type="submit" value="Submit Reservation">
+            <input type="button" value="Cancel">
+        </form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_reservation.js"></script>
+
+
+<!--Form to delete a record from a table-->
+<!--to be edited later --> 
+
+        <!--form to delete existing reservation -->
+        <div>
+            <form>
+                <fieldset>
+                    <legend>Delete Reservation</legend>
+                    <p>Are you sure you wish to delete the following?</p>
+                    <p>reservation_id: 1, program_id: 1</p>
+                </fieldset>
+                <input type="button" value="Delete Reservation">
+                <input type="button" value="Cancel">
+            </form>
+        </div>
+<script src="./js/delete_reservation.js"></script>
