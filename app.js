@@ -31,13 +31,40 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 
 app.get('/', function(req, res)
     {  
-        let query1 = "SELECT * FROM Reservations;";               // Define our query
+        let query1 = "SELECT * FROM Employees;";               // Define our query
+        let query2 = "SELECT * FROM Campgrounds;";
+        let query3 = "SELECT * FROM Programs;";
+        let query4 = "SELECT * FROM Reservations;";
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {           // Execute the query
 
-            res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
-        })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query                                     // will process this file, before sending the finished HTML to the client.
+            // Save the Employees
+            let Employees = rows;
+
+            // Run the 2nd query
+            db.pool.query(query2, (error, rows, fields) => {
+
+                // Save the Campgrounds
+                let Campgrounds = rows;
+                
+                // Run the 3rd query
+                db.pool.query(query3, (error, rows, fields) => {
+
+                    // Save the Programs
+                    let Programs = rows;
+
+                    // Run the 4th query
+                    db.pool.query(query4, (error, rows, fields) => {
+                        
+                        // Save the Reservations
+                        let Reservations = rows;
+                        return res.render('index', {data: Reservations, employees: Employees, campgrounds: Campgrounds, programs: Programs});       // Render the index.hbs file, and also send the renderer
+                    })
+                })                                                                                                          // an object where 'data' is equal to the 'rows' we
+            })                                                                                                              // received back from the query
+        })                                
+    });                                                                                       
 
 app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
@@ -61,9 +88,9 @@ app.post('/add_reservation', function(req, res) {
 */
 
     // Create query and run it in database
-    query1 = `INSERT INTO Reservations (date_created, is_campground, campground_id, program_id, employee_id, camping_start_date, camping_end_date) 
+    query1 = `INSERT INTO Reservations (employee_id, date_time_created, is_campground, campground_id, program_id, camping_start_date, camping_end_date) 
             VALUES
-                ('${data.date_created}', ${data.is_campground}, ${data.campground_id}, ${data.program_id}, ${data.employee_id}, '${data.camping_start_date}', '${data.camping_end_date}')`;
+                (${data.employee_id}, '${data.date_time_created}', ${data.is_campground}, ${data.campground_id}, ${data.program_id}, '${data.camping_start_date}', '${data.camping_end_date}')`;
     db.pool.query(query1, function(error, rows, fields) {
 
         // Check to see if there was an error
