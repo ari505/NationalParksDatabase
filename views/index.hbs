@@ -86,3 +86,32 @@
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_reservation.js"></script>
+
+<h2>Updating a Reservation</h2>
+<p>To update a camping reservation's start or end dates, select the reservation ID from the drop-down menu on the left and the new dates on the right.</p>
+<form id="update-camping-dates-form-ajax">
+    <label for="input-reservation-id">Reservation ID: </label>  
+    <select name="input-reservation-id" id="mySelect">
+        <option value="test">Select a reservation</option>
+        {{#each data}}
+        <option value="{{this.reservation_id}}">{{this.reservation_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-camping-start-date">Camping Start Date: </label>
+        <input 
+            type="datetime-local" 
+            id="input-camping-start-date" 
+            name="input-camping-start-date"
+            required />
+    <label for="input-camping-end-date">Camping End Date: </label>
+        <input
+            type="datetime-local"
+            id="input-camping-end-date"
+            name="input-camping-end-date"
+            required />
+    <input type="submit">
+
+</form>
+
+<scipt src="./js/update_camping_dates.js"></scipt> 
