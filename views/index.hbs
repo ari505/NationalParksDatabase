@@ -16,6 +16,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>delete</th>
         </tr>
     </thead>
 
@@ -24,7 +25,7 @@
 
         {{!-- For each row, print the reservation_id, employee_id, date_time_created, program_id, is_campground, campground_id, camping_start_date, camping_end_date, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.id}}>
             <td>{{this.reservation_id}}</td>
             <td>{{this.employee_id}}</td>
             <td>{{this.date_time_created}}</td>
@@ -33,10 +34,12 @@
             <td>{{this.campground_id}}</td> 
             <td>{{this.camping_start_date}}</td>
             <td>{{this.camping_end_date}}</td>  
+            <td><button onclick="delete_reservation({{this.reservation_id}})">Delete</button></td> 
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_reservation.js"></script>
 
 {{!-- Form to add a record to the table  --}}
 <h2>Add a new reservation.</h2>

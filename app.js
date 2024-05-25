@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 56555;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -66,7 +66,7 @@ app.get('/', function(req, res)
         })                                
     });                                                                                       
 
-app.post('/add_reservation', function(req, res) {
+app.post('add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
 
@@ -118,7 +118,22 @@ app.post('/add_reservation', function(req, res) {
     })
 });
 
-
+app.delete('/delete-reservation-ajax/', function(req, res, next) {
+    // Capture incoming data and parse it back to a JS object
+    let data = req.body;
+    let reservation_id = parseInt(data.reservation_id);
+    let delete_reservation = 'DELETE FROM Reservations_has_Participants WHERE reservation_id = ?';
+    
+    db.pool.query(delete_reservation, [reservation_id], function(error, rows, fields){
+        if (error) {
+            console.log(error); 
+            res.sendStatus(400);
+        } else {
+            console.log("request recieved"); 
+            res.sendStatus(204); 
+        }
+    })
+}); 
 /*
     LISTENER
 */
