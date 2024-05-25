@@ -118,11 +118,14 @@ app.post('add_reservation', function(req, res) {
     })
 });
 
+/*
+    DELETE RESERVATION
+*/
 app.delete('/delete-reservation-ajax/', function(req, res, next) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
     let reservation_id = parseInt(data.reservation_id);
-    let delete_reservation = 'DELETE FROM Reservations_has_Participants WHERE reservation_id = ?';
+    let delete_reservation = 'DELETE FROM Reservations WHERE reservation_id = ?';
     
     db.pool.query(delete_reservation, [reservation_id], function(error, rows, fields){
         if (error) {
@@ -134,6 +137,8 @@ app.delete('/delete-reservation-ajax/', function(req, res, next) {
         }
     })
 }); 
+
+
 /*
     LISTENER
 */
