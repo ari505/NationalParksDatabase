@@ -66,7 +66,7 @@ app.get('/', function(req, res)
         })                                
     });                                                                                       
 
-app.post('add_reservation', function(req, res) {
+app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
 
