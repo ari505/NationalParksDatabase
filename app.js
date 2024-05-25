@@ -145,9 +145,11 @@ app.put('/put-reservation-ajax', function(req, res, next) {
 
     let queryUpdateCampingStartDate = `UPDATE Reservations SET camping_start_date = ? WHERE reservation_id = ?`;
     let queryUpdateCampingEndDate = `UPDATE Reservations SET camping_end_date = ? WHERE reservation_id = ?`;
+    let selectChangedReservation = `SELECT * FROM Reservations WHERE reservation_id = ?`
+    
 
         // Run 1st query
-        db.pool.query(queryUpdateCampingStartDate, [reservation_id, camping_start_date], function(error, rows, fields) {
+        db.pool.query(queryUpdateCampingStartDate, [camping_start_date, reservation_id], function(error, rows, fields) {
             if(error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating bad request.
@@ -157,14 +159,20 @@ app.put('/put-reservation-ajax', function(req, res, next) {
 
             // If there was no error, we run our second query and return that data so we can use it to update the 
             // table on the front-end
-            else{
+            else {
                 // Run 2nd query
-                db.pool.query()
-            }
-        })
-        
+                db.pool.query(selectChangedReservation, [reservation_id], function (error, rows, fields) {
 
-})
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
+            }
+})});
+
 /*
     LISTENER
 */

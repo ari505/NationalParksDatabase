@@ -2,7 +2,7 @@
 let updateCampingDatesForm = document.getElementById('update-camping-dates-form-ajax')
 
 // Modify the objects we need 
-updateCampingDatesForm.addEventListener("submit", function(e) {
+updateCampingDatesForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
@@ -17,7 +17,7 @@ updateCampingDatesForm.addEventListener("submit", function(e) {
     let campingStartDateValue = inputCampingStartDate.value;
     let campingEndDateValue = inputCampingEndDate.value;
 
-    if (isNaN(CampingStartDateValue) || isNaN(CampingEndDateValue)) {
+    if (isNaN(campingStartDateValue) || isNaN(campingEndDateValue)) {
         return;
     }
 
@@ -69,7 +69,7 @@ function updateRow(data, reservationId) {
 
             // Reassign camping start date to our value we updated to
             tdStartDate.innerHTML = parsedData[0].campingStartDate;
-            tdEndDate.innerHTML = parsedData[0].campingEndDate;
+            tdEndDate.innerHTML = parsedData[1].campingEndDate;
         }
     }
 };

@@ -55,8 +55,8 @@
                         <option value="3">3</option>
                         <option value="NULL">NULL</option>
                     </select>
-                <label for="date_time_created">Date/Time Created</label>
-                    <input type="text" id="date_time_created" name="date_time_created">
+                <label for="date_time_created">Date/Time Created</label> <!--changed to date instead of text-->
+                    <input type="date" id="date_time_created" name="date_time_created">
                     {{!--<input type="datetime-local" id="date_created" name="date_created" value="2024-05-22T11:01" /> --}}
                 <input type="radio" id="is_campground" name="is_campground" value="1"/>
                     <label for="campground">Campground</label>
@@ -79,9 +79,9 @@
                         <option value="NULL">NULL</option>
                     </select>
                 <br><br><label for="camping_start_date">Camping Start Date</label> 
-                    <input type="text" id="camping_start_date" name="camping_start_date">
+                    <input type="date" id="camping_start_date" name="camping_start_date"> <!--changed to date instead of text-->
                 <label for="camping_end_date">Camping End Date</label> 
-                    <input type="text" id="camping_end_date" name="camping_end_date">
+                    <input type="date" id="camping_end_date" name="camping_end_date">  <!--changed to date instead of text-->
             </fieldset>
             <input type="submit" value="Submit Reservation">
             <input type="button" value="Cancel">
@@ -103,13 +103,13 @@
 
     <label for="input-camping-start-date">Camping Start Date: </label>
         <input 
-            type="datetime-local" 
+            type="date" 
             id="input-camping-start-date" 
             name="input-camping-start-date"
             required />
     <label for="input-camping-end-date">Camping End Date: </label>
         <input
-            type="datetime-local"
+            type="date"
             id="input-camping-end-date"
             name="input-camping-end-date"
             required />

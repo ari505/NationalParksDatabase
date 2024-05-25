@@ -102,7 +102,7 @@ addRowToTable = (data) => {
     campingEndDateCell.innerText = newRow.camping_end_date;
 
     deleteCell = document.createElement("button"); 
-    deleteCell.innerHTML = "delete"; 
+    deleteCell.innerHTML = "Delete"; 
     deleteCell.onclick = function(){
         delete_reservation(newRow.reservation_id);
     };
@@ -117,6 +117,9 @@ addRowToTable = (data) => {
     row.appendChild(campingEndDateCell);
 
     row.appendChild(deleteCell);
+
+    // Add a row attribute so the deleteRow function can find a newly added row
+        row.setAttribute('data-value', newRow.reservation_id);
 
     // Add the row to the table
     currentTable.appendChild(row);
