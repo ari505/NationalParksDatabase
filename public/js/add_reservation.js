@@ -90,6 +90,8 @@ addRowToTable = (data) => {
     let campingStartDateCell = document.createElement("td");
     let campingEndDateCell = document.createElement("td");
 
+    let deleteCell = document.createElement("TD");
+
     // Fill the cells with correct data
     employeeIdCell.innerText = newRow.employee_id;
     dateTimeCreatedCell.innerText = newRow.date_time_created;
@@ -99,6 +101,12 @@ addRowToTable = (data) => {
     campingStartDateCell.innerText = newRow.camping_start_date;
     campingEndDateCell.innerText = newRow.camping_end_date;
 
+    deleteCell = document.createElement("button"); 
+    deleteCell.innerHTML = "delete"; 
+    deleteCell.onclick = function(){
+        delete_reservation(newRow.reservation_id);
+    };
+
     // Add the cells to the row
     row.appendChild(employeeIdCell);
     row.appendChild(dateTimeCreatedCell);
@@ -107,6 +115,8 @@ addRowToTable = (data) => {
     row.appendChild(programIdCell);
     row.appendChild(campingStartDateCell);
     row.appendChild(campingEndDateCell);
+
+    row.appendChild(deleteCell);
 
     // Add the row to the table
     currentTable.appendChild(row);
