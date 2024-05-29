@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 56555;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -64,7 +64,44 @@ app.get('/', function(req, res)
                 })                                                                                                          // an object where 'data' is equal to the 'rows' we
             })                                                                                                              // received back from the query
         })                                
-    });                                                                                       
+    });   
+    
+    app.get('/reservations', function(req, res)
+    {  
+        let query1 = "SELECT * FROM Employees;";               // Define our query
+        let query2 = "SELECT * FROM Campgrounds;";
+        let query3 = "SELECT * FROM Programs;";
+        let query4 = "SELECT * FROM Reservations;";
+
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {           // Execute the query
+
+            // Save the Employees
+            let Employees = rows;
+
+            // Run the 2nd query
+            db.pool.query(query2, (error, rows, fields) => {
+
+                // Save the Campgrounds
+                let Campgrounds = rows;
+                
+                // Run the 3rd query
+                db.pool.query(query3, (error, rows, fields) => {
+
+                    // Save the Programs
+                    let Programs = rows;
+
+                    // Run the 4th query
+                    db.pool.query(query4, (error, rows, fields) => {
+                        
+                        // Save the Reservations
+                        let Reservations = rows;
+                        return res.render('reservations', {data: Reservations, employees: Employees, campgrounds: Campgrounds, programs: Programs});       // Render the index.hbs file, and also send the renderer
+                    })
+                })                                                                                                          // an object where 'data' is equal to the 'rows' we
+            })                                                                                                              // received back from the query
+        })                                
+    });   
 
 app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
