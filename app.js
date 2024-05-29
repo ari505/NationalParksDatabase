@@ -95,23 +95,6 @@ app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
 
-/*    // Capture NULL values
-    let employee_id = parseInt(data.employee_id);
-    if (isNaN(employee_id)) {
-        employee_id = 'NULL'
-    }
-    
-    let program_id = parseInt(data.program_id);
-    if (isNaN(program_id)) {
-        program_id = 'NULL'
-    }
-
-    let campground_id = parseInt(data.campground_id);
-    if (isNaN(campground_id)) {
-        campground_id = 'NULL'
-    } 
-*/
-
     // Create query and run it in database
     query1 = `INSERT INTO Reservations (employee_id, date_time_created, is_campground, campground_id, program_id, camping_start_date, camping_end_date) 
             VALUES

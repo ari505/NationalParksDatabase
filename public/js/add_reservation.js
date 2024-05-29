@@ -1,5 +1,5 @@
 // Get the objects we need to modify
-let addReservationForm = document.getElementById('/add-reservation-form-ajax');
+let addReservationForm = document.getElementById('add-reservation-form-ajax');
 
 // Modify the objects we need
 addReservationForm.addEventListener("submit", function (e) {

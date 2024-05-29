@@ -70,12 +70,11 @@
                         <option value="3">3</option>
                         <option value="NULL">NULL</option>
                     </select>
-                <label for="date_created">Date Created</label>
-                    <input type="datetime-local" id="date_created" name="date_created" value="2024-05-22T11:01" />
-                <input type="radio" id="campground" name="is_campground" value="1">
-                    <label for="campground">Campground</label>
-                <input type="radio" id="program" name="is_campground" value="0">
-                    <label for="program">Program</label><br>
+                <label for="date_time_created">Date Created</label>
+                    <input type="datetime-local" id="date_time_created" name="date_time_created">
+                <label for="campground">Input "1" for Campground OR "0" for Program</label>
+                    <input type="text" id="is_campground" name="is_campground">
+                    
                 <!--dropdown menu for campground_id-->
                 <br><label for="campground_id">Campground ID</label> <!--foreign key-->
                     <select id="campground_id" name="campground_id">
@@ -93,12 +92,11 @@
                         <option value="NULL">NULL</option>
                     </select>
                 <br><br><label for="camping_start_date">Camping Start Date</label> 
-                    <input type="text" id="camping_start_date" name="camping_start_date">
+                    <input type="date" id="camping_start_date" name="camping_start_date">
                 <label for="camping_end_date">Camping End Date</label> 
-                    <input type="text" id="camping_end_date" name="camping_end_date">
+                    <input type="date" id="camping_end_date" name="camping_end_date">
             </fieldset>
-            <input type="submit" value="Submit Reservation">
-            <input type="button" value="Cancel">
+            <input type="submit">
         </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
