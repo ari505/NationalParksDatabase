@@ -1,7 +1,22 @@
-<!-- index.hbs -->
+<!-- reservations.hbs -->
 
-<h1>Reservations Page!!!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<head>
+    <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
+    <title>Manage Park Reservations</title>
+</head>
+
+<!--nav bar links to all entity html files-->
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/campgrounds">Campgrounds</a> |
+            <a href="/reservations">Reservations</a> |
+            <a href="/employees">Employees</a> |
+            <a href="/participants">Participants</a> |
+            <a href="/programs">Programs</a> |
+        </nav>
+
+<h1>Manage Park Reservations</h1>
+<p>Use the forms below to create new reservations or manage existing ones.</p>
 
 {{!-- Create a table --}}
 <table id="reservations-table">
@@ -38,9 +53,11 @@
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_reservation.js"></script>
+
 
 {{!-- Form to add a record to the table  --}}
-<h2>Add a new reservation.</h2>
+<h2>Create New Reservation</h2>
 <p>To add a new reservation, please enter appropriate information below and click 'Submit Reservation'!</p>
 <form id="add-reservation-form-ajax">
             <fieldset>
@@ -88,19 +105,32 @@
 <script src="./js/add_reservation.js"></script>
 
 
-<!--Form to delete a record from a table-->
-<!--to be edited later --> 
+<!--Form to update a reservation record-->
+<h2>Manage Reservation</h2>
+<p>To update a camping reservation's start or end dates, select the reservation ID from the drop-down menu on the left and the new dates on the right.</p>
+<form id="update-camping-dates-form-ajax">
+    <label for="input-reservation-id">Reservation ID: </label>  
+    <select name="input-reservation-id" id="mySelect">
+        <option value="test">Select a reservation</option>
+        {{#each data}}
+        <option value="{{this.reservation_id}}">{{this.reservation_id}}</option>
+        {{/each}}
+    </select>
 
-        <!--form to delete existing reservation -->
-        <div>
-            <form>
-                <fieldset>
-                    <legend>Delete Reservation</legend>
-                    <p>Are you sure you wish to delete the following?</p>
-                    <p>reservation_id: 1, program_id: 1</p>
-                </fieldset>
-                <input type="button" value="Delete Reservation">
-                <input type="button" value="Cancel">
-            </form>
-        </div>
-<script src="./js/delete_reservation.js"></script>
+    <label for="input-camping-start-date">Camping Start Date: </label>
+        <input 
+            type="date" 
+            id="input-camping-start-date" 
+            name="input-camping-start-date"
+            required />
+    <label for="input-camping-end-date">Camping End Date: </label>
+        <input
+            type="date"
+            id="input-camping-end-date"
+            name="input-camping-end-date"
+            required />
+    <input type="submit">
+
+</form>
+
+<scipt src="./js/update_camping_dates.js"></scipt>
