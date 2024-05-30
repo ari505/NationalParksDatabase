@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -34,9 +34,16 @@ app.get('/', function(req, res)
         return res.render('index');       // Render the index.hbs file, and also send the renderer
     }); 
 
+/*
+    SELECT CAMPGROUND
+*/
 app.get('/campgrounds', function(req, res)
     {  
-        return res.render('campgrounds');       // Render the campgrounds.hbs file, and also send the renderer
+        let query1 = "SELECT * FROM Campgrounds;";
+
+        db.pool.query(query1, function (error, rows, fields) {
+            res.render('campgrounds', {campgrounds: rows});       // Render the campgrounds.hbs file, and also send the renderer 
+        })
     }); 
     
 app.get('/reservations', function(req, res)
@@ -73,7 +80,7 @@ app.get('/reservations', function(req, res)
                     })
                 })                                                                                                          // an object where 'data' is equal to the 'rows' we
             })                                                                                                              // received back from the query
-        })                                
+        });                            
     });   
 
 app.get('/employees', function(req, res)
@@ -88,7 +95,10 @@ app.get('/participants', function(req, res)
 
 app.get('/programs', function(req, res)
     {  
-        return res.render('programs');       // Render the programs.hbs file, and also send the renderer
+        let query1 = "SELECT * FROM Programs"; 
+        db.pool.query(query1, function (error, rows, fields) {
+            res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
+        }) 
     }); 
 
 app.post('/add_reservation', function(req, res) {
@@ -180,6 +190,40 @@ app.put('/put-reservation-ajax', function(req, res, next) {
                 })
             }
 })});
+
+/*
+    ADD CAMPGROUND
+*/
+app.post('/add-campground'), function (req, res) {
+    let campgrounds = req.body; 
+
+    //capture null numbers for num campsites
+
+    let num_campsites = parseInt(campgrounds.num_campsites);
+    if (isNaN(num_campsites))
+    {
+        num_campsites = 'NULL'
+    }
+
+    //create query
+    query1 = `INSERT INTO Campgrounds (campground_name, num_campsites) VALUES ('${campgrounds.campground_name}', ${campgrounds.num_campsites})`;
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        } else {
+            query2 = `SELECT * FROM Campgrounds;`;
+            db.pool.query(query2, function(error, rows, fields){
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows); 
+                }
+            })
+        }
+    })
+};
 
 /*
     LISTENER
