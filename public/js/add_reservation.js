@@ -50,6 +50,7 @@ addReservationForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             addRowToTable(xhttp.response);
+            location.reload();
 
             // Clear the input fields for another transaction
             inputEmployeeId.value = '';

@@ -17,9 +17,10 @@ updateCampingDatesForm.addEventListener("submit", function (e) {
     let campingStartDateValue = inputCampingStartDate.value;
     let campingEndDateValue = inputCampingEndDate.value;
 
-    if (isNaN(campingStartDateValue) || isNaN(campingEndDateValue)) {
-        return;
-    }
+    // // Handle case where dates are left blank
+    // if (isNaN(campingStartDateValue) || isNaN(campingEndDateValue)) {
+    //     return;
+    // }
 
     // Put our data we want to send in a javascript object 
     let data = {
@@ -28,17 +29,20 @@ updateCampingDatesForm.addEventListener("submit", function (e) {
         campingEndDate: campingEndDateValue,
     }
 
+    console.log(data);
+
     // Set up our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "/put-reservation-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
-    xhttp.onereadystatechange = () => {
+    xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
             updateRow(xhttp.response, reservationIdValue);
+            location.reload();
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -52,8 +56,9 @@ updateCampingDatesForm.addEventListener("submit", function (e) {
 
 function updateRow(data, reservationId) {
     let parsedData = JSON.parse(data);
+    console.log(parsedData);
 
-    let reservationTable = document.getElementById("reservation-table");
+    let table = document.getElementById("reservations-table");
 
     for (let i = 0, row; row = table.rows[i]; i++) {
         // Iterate through rows
@@ -67,9 +72,9 @@ function updateRow(data, reservationId) {
             let tdStartDate = updateRowIndex.getElementsByTagName("td")[6];
             let tdEndDate = updateRowIndex.getElementsByTagName("td")[7];
 
-            // Reassign camping start date to our value we updated to
-            tdStartDate.innerHTML = parsedData[0].campingStartDate;
-            tdEndDate.innerHTML = parsedData[1].campingEndDate;
+            // Reassign camping start/end date values we updated to
+            tdStartDate.innerHTML = parsedData[0].camping_start_date;
+            tdEndDate.innerHTML = parsedData[0].camping_end_date;
         }
     }
 };
