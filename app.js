@@ -292,6 +292,39 @@ app.post('/add-employee-ajax', function(req, res) {
 });
 
 /*
+    ADD PARTICIPANT
+*/
+app.post('/add-participant-ajax', function(req, res) {
+    // Capture incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create first query and run it on DB
+    query1 = `INSERT INTO Participants (first_name, last_name, age, phone_number, email) VALUES ('${data.first_name}', '${data.last_name}', '${data.age}', '${data.phone_number}', '${data.email}')`;
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check for error
+        if (error) {
+            // Log error and send 400
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If no error, perform SELECT 
+            query2 = `SELECT * FROM Participants;`;
+            db.pool.query(query2, function(error, rows, fields) {
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400);
+                }
+                // If no error, send results of query back
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+/*
     LISTENER
 */
 
