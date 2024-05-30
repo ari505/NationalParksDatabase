@@ -15,3 +15,36 @@
 
 <h1>Park Programs</h1>
 <p>Find the park's programs listed here.</p>
+
+{{!-- Create a table --}}
+<table id="programs-table">
+
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each programs.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the program_id, name, capacity, location, date_time, and employee_id (FK)--}}
+        {{#each programs}}
+        <tr>
+            <td>{{this.program_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.capacity}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.date_time}}</td>
+            <td>{{this.employee_id}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
