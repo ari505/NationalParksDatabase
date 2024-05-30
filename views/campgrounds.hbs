@@ -1,0 +1,63 @@
+<head>
+    <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
+    <title>Park Campgrounds</title>
+</head>
+
+<!--nav bar links to all entity html files-->
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/campgrounds">Campgrounds</a> |
+            <a href="/reservations">Reservations</a> |
+            <a href="/employees">Employees</a> |
+            <a href="/participants">Participants</a> |
+            <a href="/programs">Programs</a> |
+        </nav>
+
+<h1>Park Campgrounds</h1>
+<p>Find the park's campgrounds listed here.</p>
+
+{{!-- Create a table --}}
+<table id="campgrounds-table">
+
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each campgrounds.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the campground_id, campground_name, and num_campsites--}}
+        {{#each campgrounds}}
+        <tr>
+            <td>{{this.campground_id}}</td>
+            <td>{{this.campground_name}}</td>
+            <td>{{this.num_campsites}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+        <!--form to add new campground-->
+<h2>Add a Campground</h2>
+<p>To add a new campground, please enter the campground information below and click 'Submit'!</p>
+    <form id="add-campground-form">
+        <fieldset>
+            <legend>New Campground</legend>
+                <label for="cg-name">Campground Name: </label>
+                    <input type="text" name="input-cg-name" id="input-cg-name">
+                <label for="num-cs">Number of Campsites: </label>
+                    <input type="number" name="input-num-cs" id="input-num-cs">
+        </fieldset>
+        <input type="submit">
+    </form>
+<script src="./js/add_campground.js"></script>
+

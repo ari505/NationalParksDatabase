@@ -1,0 +1,11 @@
+table { 
+    border: 3px solid gray;
+}
+th, td { 
+    border: 2px solid wheat;
+}
+
+nav {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font: rgb(6, 94, 32);
+}

@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 56555;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -30,6 +30,23 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 */
 
 app.get('/', function(req, res)
+    {  
+        return res.render('index');       // Render the index.hbs file, and also send the renderer
+    }); 
+
+/*
+    SELECT CAMPGROUND
+*/
+app.get('/campgrounds', function(req, res)
+    {  
+        let query1 = "SELECT * FROM Campgrounds;";
+
+        db.pool.query(query1, function (error, rows, fields) {
+            res.render('campgrounds', {campgrounds: rows});       // Render the campgrounds.hbs file, and also send the renderer 
+        })
+    }); 
+    
+app.get('/reservations', function(req, res)
     {  
         let query1 = "SELECT * FROM Employees;";               // Define our query
         let query2 = "SELECT * FROM Campgrounds;";
@@ -59,33 +76,34 @@ app.get('/', function(req, res)
                         
                         // Save the Reservations
                         let Reservations = rows;
-                        return res.render('index', {data: Reservations, employees: Employees, campgrounds: Campgrounds, programs: Programs});       // Render the index.hbs file, and also send the renderer
+                        return res.render('reservations', {data: Reservations, employees: Employees, campgrounds: Campgrounds, programs: Programs});       // Render the reservations.hbs file, and also send the renderer
                     })
                 })                                                                                                          // an object where 'data' is equal to the 'rows' we
             })                                                                                                              // received back from the query
-        })                                
-    });                                                                                       
+        });                            
+    });   
+
+app.get('/employees', function(req, res)
+    {  
+        return res.render('employees');       // Render the employees.hbs file, and also send the renderer
+    }); 
+
+app.get('/participants', function(req, res)
+    {  
+        return res.render('participants');       // Render the participants.hbs file, and also send the renderer
+    }); 
+
+app.get('/programs', function(req, res)
+    {  
+        let query1 = "SELECT * FROM Programs"; 
+        db.pool.query(query1, function (error, rows, fields) {
+            res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
+        }) 
+    }); 
 
 app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
-
-/*    // Capture NULL values
-    let employee_id = parseInt(data.employee_id);
-    if (isNaN(employee_id)) {
-        employee_id = 'NULL'
-    }
-    
-    let program_id = parseInt(data.program_id);
-    if (isNaN(program_id)) {
-        program_id = 'NULL'
-    }
-
-    let campground_id = parseInt(data.campground_id);
-    if (isNaN(campground_id)) {
-        campground_id = 'NULL'
-    } 
-*/
 
     // Create query and run it in database
     query1 = `INSERT INTO Reservations (employee_id, date_time_created, is_campground, campground_id, program_id, camping_start_date, camping_end_date) 
@@ -172,6 +190,40 @@ app.put('/put-reservation-ajax', function(req, res, next) {
                 })
             }
 })});
+
+/*
+    ADD CAMPGROUND
+*/
+app.post('/add-campground'), function (req, res) {
+    let campgrounds = req.body; 
+
+    //capture null numbers for num campsites
+
+    let num_campsites = parseInt(campgrounds.num_campsites);
+    if (isNaN(num_campsites))
+    {
+        num_campsites = 'NULL'
+    }
+
+    //create query
+    query1 = `INSERT INTO Campgrounds (campground_name, num_campsites) VALUES ('${campgrounds.campground_name}', ${campgrounds.num_campsites})`;
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        } else {
+            query2 = `SELECT * FROM Campgrounds;`;
+            db.pool.query(query2, function(error, rows, fields){
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows); 
+                }
+            })
+        }
+    })
+};
 
 /*
     LISTENER
