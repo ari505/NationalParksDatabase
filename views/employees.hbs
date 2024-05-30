@@ -3,16 +3,6 @@
     <title>Park Employees</title>
 </head>
 
-<!--nav bar links to all entity html files-->
-        <nav>
-            <a href="/">Home</a> |
-            <a href="/campgrounds">Campgrounds</a> |
-            <a href="/reservations">Reservations</a> |
-            <a href="/employees">Employees</a> |
-            <a href="/participants">Participants</a> |
-            <a href="/programs">Programs</a> |
-        </nav>
-
 <h1>Park Employees</h1>
 <p>Find the park's employee information listed here.</p>
 
@@ -46,3 +36,20 @@
         {{/each}}
     </tbody>
 </table>
+
+{{!-- Form to add a new employee to table and DB --}}
+<h2>Add New Employee</h2>
+<p>To add a new employee to the system, please enter their information below and click 'Submit'.</p>
+<form id="add-employee-form-ajax">
+    <fieldset>
+        <label for="first_name">First Name: </label>
+            <input type="text" id="first_name" name="first_name" required>
+        <label for="last_name">Last Name: </label>
+            <input type="text" id="last_name" name="last_name" required>
+        <label for="phone_number">Phone Number: </label>
+            <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+    </fieldset><br>
+    <input type="submit">
+</form>
+
+<script src="./js/add_employee.js"></script>

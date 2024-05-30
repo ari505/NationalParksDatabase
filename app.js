@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -51,8 +51,9 @@ app.get('/reservations', function(req, res)
         let query1 = "SELECT * FROM Employees;";               // Define our query
         let query2 = "SELECT * FROM Campgrounds;";
         let query3 = "SELECT * FROM Programs;";
-        let query4 = "SELECT * FROM Reservations;";
-
+        let query4 = "SELECT * FROM Reservations";
+        //let query5 = "SELECT reservation_id AS 'Reservation ID', employee_id AS 'Employee ID', date_time_created AS 'Date/Time Created', program_id AS 'Program ID', is_campground AS 'Campground?', campground_id AS 'Campground ID', camping_start_date AS 'Camping Start Date', camping_end_date AS 'Camping End Date' FROM Reservations;";
+    
         // Run the 1st query
         db.pool.query(query1, function(error, rows, fields) {           // Execute the query
 
@@ -146,6 +147,7 @@ app.post('/add_reservation', function(req, res) {
         }
     })
 });
+
 /*
     DELETE RESERVATION
 */
@@ -254,6 +256,40 @@ app.post('/add-campground'), function (req, res) {
         }
     })
 };
+
+/*
+    ADD EMPLOYEE 
+*/
+app.post('/add-employee-ajax', function(req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create query 1 and run it on the database
+    query1 = `INSERT INTO Employees (first_name, last_name, phone_number) VALUES ('${data.first_name}', '${data.last_name}', '${data.phone_number}')`;
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check to see if there was an error
+        if (error) {
+            // Log error to terminal and send HTTP response 400
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // No error, so perform query 2
+            query2 = `SELECT * FROM Employees`;
+            db.pool.query(query2, function(error, rows, fields) {
+                // If error occurs, send a 400 
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400);
+                }
+                // If all went well, send results of query back
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 /*
     LISTENER

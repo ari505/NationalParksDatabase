@@ -21,6 +21,7 @@ function delete_reservation(reservation_id){
     }
     //send the request
     xhttp.send(JSON.stringify(data)); 
+    location.reload();
 }
 
 function deleteRow(reservation_id){
