@@ -82,6 +82,7 @@ addRowToTable = (data) => {
 
     // Create a row and 4 cells
     let row = document.createElement("tr");
+    let reservationIdCell = document.createElement("td");
     let employeeIdCell = document.createElement("td");
     let dateTimeCreatedCell = document.createElement("td");
     let isCampgroundCell = document.createElement("td");
@@ -93,6 +94,7 @@ addRowToTable = (data) => {
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
+    reservationIdCell.innerText = newRow.reservation_id;
     employeeIdCell.innerText = newRow.employee_id;
     dateTimeCreatedCell.innerText = newRow.date_time_created;
     isCampgroundCell.innerText = newRow.is_campground;
@@ -108,6 +110,7 @@ addRowToTable = (data) => {
     };
 
     // Add the cells to the row
+    row.appendChild(reservationIdCell);
     row.appendChild(employeeIdCell);
     row.appendChild(dateTimeCreatedCell);
     row.appendChild(isCampgroundCell);
