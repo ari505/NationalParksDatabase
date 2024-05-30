@@ -85,22 +85,33 @@ app.get('/reservations', function(req, res)
 
 app.get('/employees', function(req, res)
     {  
-        return res.render('employees');       // Render the employees.hbs file, and also send the renderer
-    }); 
+        let query1 = "SELECT * FROM Employees;"; 
+        
+        db.pool.query(query1, function(error, rows, fields) {
+            res.render('employees', {employees: rows});         // Render the employees.hbs file, and also send the renderer
+        }) 
+    });
 
 app.get('/participants', function(req, res)
     {  
-        return res.render('participants');       // Render the participants.hbs file, and also send the renderer
+        let query1 = "SELECT * FROM Participants;"; 
+        
+        db.pool.query(query1, function(error, rows, fields) {
+            res.render('participants', {participants: rows});   // Render the participants.hbs file, and also send the renderer
+        }) 
     }); 
 
 app.get('/programs', function(req, res)
     {  
         let query1 = "SELECT * FROM Programs"; 
+
         db.pool.query(query1, function (error, rows, fields) {
             res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
         }) 
     }); 
-
+/*
+    ADD RESERVATION
+*/
 app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;

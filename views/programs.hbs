@@ -24,7 +24,7 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each campgrounds.[0]}}
+            {{#each programs.[0]}}
             <th>
                 {{@key}}
             </th>
@@ -35,12 +35,15 @@
     {{!-- Body section --}}
     <tbody>
 
-        {{!-- For each row, print the campground_id, campground_name, and num_campsites--}}
-        {{#each campgrounds}}
+        {{!-- For each row, print the program_id, name, capacity, location, date_time, and employee_id (FK)--}}
+        {{#each programs}}
         <tr>
-            <td>{{this.campground_id}}</td>
-            <td>{{this.campground_name}}</td>
-            <td>{{this.num_campsites}}</td>
+            <td>{{this.program_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.capacity}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.date_time}}</td>
+            <td>{{this.employee_id}}</td>
         </tr>
         {{/each}}
     </tbody>
