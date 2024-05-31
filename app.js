@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -110,6 +110,7 @@ app.get('/programs', function(req, res)
             res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
         }) 
     }); 
+    
 /*
     ADD RESERVATION
 */
