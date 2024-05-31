@@ -41,13 +41,12 @@
 <p>To add a new campground, please enter the campground information below and click 'Submit'!</p>
     <form id="add-campground-form">
         <fieldset>
-            <legend>New Campground</legend>
-                <label for="cg-name">Campground Name: </label>
-                    <input type="text" name="input-cg-name" id="input-cg-name">
-                <label for="num-cs">Number of Campsites: </label>
-                    <input type="number" name="input-num-cs" id="input-num-cs">
+                <label for="input-cg-name">Campground Name: </label>
+                    <input type="text" name="input-cg-name" id="input-cg-name" required>
+                <label for="input-num-cs">Number of Campsites: </label>
+                    <input type="number" name="input-num-cs" id="input-num-cs" required>
         </fieldset>
         <input type="submit">
-    </form>
+    </form><br>
 <script src="./js/add_campground.js"></script>
 

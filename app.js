@@ -226,19 +226,19 @@ app.put('/put-reservation-ajax', function(req, res, next) {
 /*
     ADD CAMPGROUND
 */
-app.post('/add-campground'), function (req, res) {
-    let campgrounds = req.body; 
+app.post('/add-campground', function (req, res) {
+    let data = req.body; 
 
     //capture null numbers for num campsites
 
-    let num_campsites = parseInt(campgrounds.num_campsites);
+    let num_campsites = parseInt(data.num_campsites);
     if (isNaN(num_campsites))
     {
         num_campsites = 'NULL'
     }
 
     //create query
-    query1 = `INSERT INTO Campgrounds (campground_name, num_campsites) VALUES ('${campgrounds.campground_name}', ${campgrounds.num_campsites})`;
+    query1 = `INSERT INTO Campgrounds (campground_name, num_campsites) VALUES ('${data.campground_name}', ${data.num_campsites})`;
     db.pool.query(query1, function(error, rows, fields){
         if (error) {
             console.log(error)
@@ -255,7 +255,7 @@ app.post('/add-campground'), function (req, res) {
             })
         }
     })
-};
+}); 
 
 /*
     ADD EMPLOYEE 
