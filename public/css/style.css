@@ -1,15 +1,29 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(181, 252, 181);
 }
 
 table { 
-    border: 3px solid gray;
+    border: 3px solid rgb(26, 101, 187);
+    background-color: whitesmoke;
+    border-color: rgb(14, 216, 14);
 }
 th, td { 
-    border: 2px solid wheat;
+    border: 2px solid rgb(20, 158, 39);
 }
 
 nav {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font: rgb(6, 94, 32);
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+form {
+    border-color: green;
 }

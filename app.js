@@ -1,3 +1,9 @@
+// Citation for the following functions:
+// Date: 5/30/24
+// Adapted from:
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+
 // app.js
 
 /*
@@ -13,6 +19,23 @@ var app     = express();            // We need to instantiate an express object 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
+
+
+// Citation for the following two functions:
+// Date: 5/30/24
+// Adapted from:
+// Source URL: https://www.geeksforgeeks.org/how-to-display-images-using-handlebars-in-node-js/
+
+// // Route to display static src images
+// app.get("/static", (req, res) => {
+//     res.render("static");
+// });
+
+// // Route to display dynamic src image
+// app.get("/dynamic", (req, res) => {
+//     imageList = [];
+//     imageList.push
+// })
 
 // Port
 PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
