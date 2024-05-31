@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -323,6 +323,32 @@ app.post('/add-participant-ajax', function(req, res) {
         }
     })
 });
+
+/*
+    ADD PROGRAM
+*/
+app.post('/add-program', function (req, res) {
+    let data = req.body; 
+
+    query1 = `INSERT INTO Programs (name, capacity, location, date_time, employee_id) VALUES ('${data.name}', ${data.capacity}, '${data.location}', '${data.date_time}', ${data.employee_id})`;
+    db.pool.query(query1, function (error, rows, fields) {
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        } else {
+            query2 = `SELECT * FROM Programs;`; 
+            db.pool.query(query2, function (error, rows, fields) {
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+}); 
+
 
 /*
     LISTENER
