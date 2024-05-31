@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 // Port
-PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -106,9 +106,18 @@ app.get('/programs', function(req, res)
     {  
         let query1 = "SELECT * FROM Programs"; 
 
+        let query2 = "SELECT * FROM Employees"; 
+
         db.pool.query(query1, function (error, rows, fields) {
-            res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
-        }) 
+            //save employees for drop down
+            let programs = rows; 
+
+            db.pool.query(query2, (error, rows, fields) => {
+
+                let employees = rows; 
+                res.render('programs', {data: programs, employees: employees});     // Render the programs.hbs file, and also send the renderer
+            }) 
+        })
     }); 
 /*
     ADD RESERVATION
@@ -226,19 +235,19 @@ app.put('/put-reservation-ajax', function(req, res, next) {
 /*
     ADD CAMPGROUND
 */
-app.post('/add-campground'), function (req, res) {
-    let campgrounds = req.body; 
+app.post('/add-campground', function (req, res) {
+    let data = req.body; 
 
     //capture null numbers for num campsites
 
-    let num_campsites = parseInt(campgrounds.num_campsites);
+    let num_campsites = parseInt(data.num_campsites);
     if (isNaN(num_campsites))
     {
         num_campsites = 'NULL'
     }
 
     //create query
-    query1 = `INSERT INTO Campgrounds (campground_name, num_campsites) VALUES ('${campgrounds.campground_name}', ${campgrounds.num_campsites})`;
+    query1 = `INSERT INTO Campgrounds (campground_name, num_campsites) VALUES ('${data.campground_name}', ${data.num_campsites})`;
     db.pool.query(query1, function(error, rows, fields){
         if (error) {
             console.log(error)
@@ -255,7 +264,7 @@ app.post('/add-campground'), function (req, res) {
             })
         }
     })
-};
+}); 
 
 /*
     ADD EMPLOYEE 
@@ -290,6 +299,65 @@ app.post('/add-employee-ajax', function(req, res) {
         }
     })
 });
+
+/*
+    ADD PARTICIPANT
+*/
+app.post('/add-participant-ajax', function(req, res) {
+    // Capture incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create first query and run it on DB
+    query1 = `INSERT INTO Participants (first_name, last_name, age, phone_number, email) VALUES ('${data.first_name}', '${data.last_name}', '${data.age}', '${data.phone_number}', '${data.email}')`;
+    db.pool.query(query1, function(error, rows, fields) {
+        // Check for error
+        if (error) {
+            // Log error and send 400
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If no error, perform SELECT 
+            query2 = `SELECT * FROM Participants;`;
+            db.pool.query(query2, function(error, rows, fields) {
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400);
+                }
+                // If no error, send results of query back
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+/*
+    ADD PROGRAM
+*/
+app.post('/add-program', function (req, res) {
+    let data = req.body; 
+
+    query1 = `INSERT INTO Programs (name, capacity, location, date_time, employee_id) VALUES ('${data.name}', ${data.capacity}, '${data.location}', '${data.date_time}', ${data.employee_id})`;
+    db.pool.query(query1, function (error, rows, fields) {
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        } else {
+            query2 = `SELECT * FROM Programs;`; 
+            db.pool.query(query2, function (error, rows, fields) {
+                if (error) {
+                    console.log(error)
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+}); 
+
 
 /*
     LISTENER

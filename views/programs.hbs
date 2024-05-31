@@ -38,3 +38,29 @@
         {{/each}}
     </tbody>
 </table>
+
+        <!--form to add new campground-->
+<h2>Add a Program</h2>
+<p>To add a new program, please enter the program below and click 'Submit'!</p>
+    <form id="add-program-form">
+        <fieldset>
+                <label for="input-program-name">Name: </label>
+                    <input type="text" name="input-program-name" id="input-program-name" required>
+                <label for="input-program-cap">Capacity:  </label>
+                    <input type="number" name="input-program-cap" id="input-program-cap" required>
+                <label for="input-program-location">Location: </label>
+                    <input type="text" name="input-program-location" id="input-program-location" required>
+                <label for="input-program-datetime">Date/Time: </label>
+                    <input type="datetime-local" name="input-program-datetime" id="input-program-datetime" required>
+                <label for="input-employee-id">Employee ID: </label> <!--foreign key-->
+                    <select id="input-employee-id" name="input-employee-id">
+                    <option value="">Select an Employee</option>
+                        {{#each employees}}
+                        <option value="{{this.employee_id}}">{{this.employee_id}}</option>
+                        {{/each}}
+                    </select>
+        </fieldset>
+        <input type="submit">
+    </form><br>
+<script src="./js/add_program.js"></script>
+

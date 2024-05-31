@@ -38,3 +38,24 @@
         {{/each}}
     </tbody>
 </table>
+
+{{!-- Form to add a new participant to table and DB --}}
+<h2>Add a New Participant to our Park Community!</h2>
+<p>To add a new participant to the system, please enter their information below and click 'Submit'.</p>
+<form id="add-participant-form-ajax">
+    <fieldset>
+        <label for="first_name">First Name: </label>
+            <input type="text" id="first_name" name="first_name" required>
+        <label for="last_name">Last Name: </label>
+            <input type="text" id="last_name" name="last_name" required><br><br>
+        <label for="age">Age: </label>
+            <input type="text" id="age" name="age" required>
+        <label for="phone_number">Phone Number: </label>
+            <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+        <label for="email">Email: </label>
+            <input type="text" id="email" name="email" required>
+    </fieldset><br>
+    <input type="submit">
+</form>
+
+<script src="./js/add_participant.js"></script>

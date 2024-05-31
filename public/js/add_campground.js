@@ -12,12 +12,12 @@ addCampgroundForm.addEventListener("submit", function (e) {
     let numCampsitesValue = inputNumCampsites.value; 
 
     //put data into campground object 
-    let campgrounds = {
+    let data = {
         campground_name: campgroundNameValue, 
         num_campsites: numCampsitesValue
     }
 
-    console.log(campgrounds); 
+    console.log(data); 
 
     //setup ajax request 
     var xhttp = new XMLHttpRequest(); 
@@ -28,7 +28,7 @@ addCampgroundForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            addRowToCampgroundTable(xhttp.response);
+            addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
             inputCampgroundName.value = '';
@@ -38,11 +38,11 @@ addCampgroundForm.addEventListener("submit", function (e) {
             console.log("There was an error with the input")
         }
     }   
-   // xhttp.send(JSON.stringify(campgrounds)); line not working --troubleshoot in morning
+    xhttp.send(JSON.stringify(data));
 
 })
 
-addRowToCampgroundTable = (campgrounds) => {
+addRowToTable = (data) => {
     //current table reference
     let currentTable = document.getElementById("campgrounds-table"); 
 
@@ -50,7 +50,7 @@ addRowToCampgroundTable = (campgrounds) => {
     let newRowIndex = currentTable.rows.length; 
 
     // Get a reference to the new row from the database query
-    let parsedData = JSON.parse(campgrounds); 
+    let parsedData = JSON.parse(data); 
     let newRow = parsedData[parsedData.length - 1]
 
     //create rows and cells
