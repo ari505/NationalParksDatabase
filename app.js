@@ -106,9 +106,18 @@ app.get('/programs', function(req, res)
     {  
         let query1 = "SELECT * FROM Programs"; 
 
+        let query2 = "SELECT * FROM Employees"; 
+
         db.pool.query(query1, function (error, rows, fields) {
-            res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
-        }) 
+            //save employees for drop down
+            let programs = rows; 
+
+            db.pool.query(query2, (error, rows, fields) => {
+
+                let employees = rows; 
+                res.render('programs', {data: programs, employees: employees});     // Render the programs.hbs file, and also send the renderer
+            }) 
+        })
     }); 
 /*
     ADD RESERVATION

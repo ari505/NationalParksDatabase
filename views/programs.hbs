@@ -54,10 +54,10 @@
                     <input type="datetime-local" name="input-program-datetime" id="input-program-datetime" required>
                 <label for="input-employee-id">Employee ID: </label> <!--foreign key-->
                     <select id="input-employee-id" name="input-employee-id">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="NULL">NULL</option>
+                    <option value="">Select an Employee</option>
+                        {{#each employees}}
+                        <option value="{{this.employee_id}}">{{this.employee_id}}</option>
+                        {{/each}}
                     </select>
         </fieldset>
         <input type="submit">
