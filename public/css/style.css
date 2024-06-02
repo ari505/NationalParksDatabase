@@ -59,7 +59,7 @@ img {
 }
 
 #header h1{
-    color: rgba(158, 123, 85, 0.841);
+    color: rgba(133, 108, 82, 0.841);
     font-weight: lighter;
     padding-left: 20px;
 }
@@ -72,11 +72,11 @@ fieldset {
     flex-direction: column; 
     gap: 12px;
     border-color: rgba(158, 123, 85, 0.351);
+    background-color: rgba(144, 156, 177, 0.353)
 }
 
 div#newEmployeeDiv, div#newParticipantDiv, div#newReservationDiv, div#newCampgroundDiv, div#newProgramDiv, div#updateReservationDiv {
     max-width: 700px;
-   /* background-color: rgba(144, 156, 177, 0.353); not sure if i like this*/
 }
 
 
