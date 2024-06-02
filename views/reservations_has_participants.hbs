@@ -1,0 +1,50 @@
+<!-- reservations_has_participants.hbs -->
+
+<head>
+    <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
+    <title>View All Park Reservations and Participants</title>
+</head>
+
+<div id="reservationsHasParticipantsContents">
+<div class="tableDiv" id="reservationTableDiv">
+    <h2>View Reservation and Participant Information</h2>
+    <p>Use the forms below to create new reservations or manage existing ones.</p>
+
+    {{!-- Create a table --}}
+    <table id="reservationsHasParticipantsTable">
+
+        <thead>
+
+            {{!-- For just the first row, we print each key of the row object as a header cell so we
+            know what each column means when the page renders --}}
+            <tr>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+            </tr>
+        </thead>
+
+        {{!-- Body section --}}
+        <tbody>
+<!--SELECT Reservations_has_Participants.reservation_participant_id, Reservations.reservation_id, Participants.participant_id, 
+        Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
+    INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
+    INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
+        WHERE Participants.first_name = 'Andrew' and last_name = 'Kent' and phone_number = '564-798-0908';-->
+            {{!-- For each row, print the reservation_id, employee_id, date_time_created, program_id, is_campground, campground_id, camping_start_date, camping_end_date, in order --}}
+            {{#each data}}
+            <tr>
+                <td>{{this.reservation_participant_id}}</td>
+                <td>{{this.reservation_id}}</td>
+                <td>{{this.participant_id}}</td>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.program_id}}</td> 
+                <td>{{this.campground_id}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

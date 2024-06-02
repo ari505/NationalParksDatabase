@@ -58,7 +58,7 @@ app.get('/', function(req, res)
     }); 
 
 /*
-    SELECT CAMPGROUND
+    SELECT Campgrounds
 */
 app.get('/campgrounds', function(req, res)
     {  
@@ -69,12 +69,16 @@ app.get('/campgrounds', function(req, res)
         })
     }); 
     
+/*
+    SELECT Reservations
+*/
 app.get('/reservations', function(req, res)
     {  
         let query1 = "SELECT * FROM Employees;";               // Define our query
         let query2 = "SELECT * FROM Campgrounds;";
         let query3 = "SELECT * FROM Programs;";
-        let query4 = "SELECT * FROM Reservations";
+        let query4 = "SELECT * FROM Participants;";
+        let query5 = "SELECT * FROM Reservations";
         //let query5 = "SELECT reservation_id AS 'Reservation ID', employee_id AS 'Employee ID', date_time_created AS 'Date/Time Created', program_id AS 'Program ID', is_campground AS 'Campground?', campground_id AS 'Campground ID', camping_start_date AS 'Camping Start Date', camping_end_date AS 'Camping End Date' FROM Reservations;";
     
         // Run the 1st query
@@ -98,15 +102,24 @@ app.get('/reservations', function(req, res)
                     // Run the 4th query
                     db.pool.query(query4, (error, rows, fields) => {
                         
-                        // Save the Reservations
-                        let Reservations = rows;
-                        return res.render('reservations', {data: Reservations, employees: Employees, campgrounds: Campgrounds, programs: Programs});       // Render the reservations.hbs file, and also send the renderer
+                        // Save the Participants
+                        let Participants = rows;
+                    
+                        db.pool.query(query5, (error, rows, fields) => {
+                            
+                            // Save the Reservations
+                            let Reservations = rows;
+                            return res.render('reservations', {data: Reservations, employees: Employees, campgrounds: Campgrounds, programs: Programs, participants: Participants});       // Render the reservations.hbs file, and also send the renderer
+                        });
                     })
                 })                                                                                                          // an object where 'data' is equal to the 'rows' we
             })                                                                                                              // received back from the query
         });                            
-    });   
+    });  
 
+/*
+    SELECT Employees
+*/
 app.get('/employees', function(req, res)
     {  
         let query1 = "SELECT * FROM Employees;"; 
@@ -115,7 +128,9 @@ app.get('/employees', function(req, res)
             res.render('employees', {employees: rows});         // Render the employees.hbs file, and also send the renderer
         }) 
     });
-
+/*
+    SELECT Participants
+*/
 app.get('/participants', function(req, res)
     {  
         let query1 = "SELECT * FROM Participants;"; 
@@ -124,7 +139,9 @@ app.get('/participants', function(req, res)
             res.render('participants', {participants: rows});   // Render the participants.hbs file, and also send the renderer
         }) 
     }); 
-
+/*
+    SELECT Programs
+*/
 app.get('/programs', function(req, res)
     {  
         let query1 = "SELECT * FROM Programs"; 
@@ -133,9 +150,43 @@ app.get('/programs', function(req, res)
             res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
         }) 
     }); 
+
+/*
+    SELECT Reservations_has_Participants
+*/
+app.get('/reservations_has_participants', function(req, res)
+{  
+    let query1 = "SELECT * FROM Participants;";
+    let query2 = "SELECT * FROM Reservations";
+    let query3 = `SELECT Reservations_has_Participants.reservation_participant_id, Reservations.reservation_id, Participants.participant_id, 
+    Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
+INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
+INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id`;
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields) {           // Execute the query
+
+        // Save the Employees
+        let Participants = rows;
+
+        // Run the 2nd query
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Save the Campgrounds
+            let Reservations = rows;
+            
+                //run the 3rd query
+                db.pool.query(query3, (error, rows, fields) => {
+                    let Reservations_has_Participants = rows;
+                    return res.render('reservations_has_participants', {data: Reservations_has_Participants, reservations: Reservations, participants: Participants
+                });
+            })     
+        })
+    });                                                                                                        
+});                                                                                                             
     
 /*
-    ADD RESERVATION
+    ADD Reservations
 */
 app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
@@ -173,7 +224,38 @@ app.post('/add_reservation', function(req, res) {
 });
 
 /*
-    DELETE RESERVATION
+    ADD Reservations_has_Participants
+*/
+
+
+app.post('/add-reservation-has-participants', function (req, res) {
+    let data = req.body; 
+    
+    query1=`INSERT into Reservations_has_Participants (reservation_id, participant_id) VALUES (${data.reservation_id}, ${data.participant_id})`; 
+
+    db.pool.query(query1, function (error, row, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            query2 = `SELECT Reservations_has_Participants.reservation_participant_id, Reservations.reservation_id, Participants.participant_id, 
+            Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
+        INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
+        INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id`; 
+            db.pool.query(query2, function(error, rows, fields) {
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+/*
+    DELETE Reservations
 */
 app.delete('/delete-reservation-ajax/', function(req, res, next) {
     // Capture incoming data and parse it back to a JS object
@@ -193,7 +275,7 @@ app.delete('/delete-reservation-ajax/', function(req, res, next) {
 }); 
 
 /*
-    UPDATE RESERVATION
+    UPDATE Reservations
 */
 app.put('/put-reservation-ajax', function(req, res, next) {
     let data = req.body;
@@ -248,7 +330,7 @@ app.put('/put-reservation-ajax', function(req, res, next) {
 });
 
 /*
-    ADD CAMPGROUND
+    ADD Campgrounds
 */
 app.post('/add-campground', function (req, res) {
     let data = req.body; 
@@ -282,7 +364,7 @@ app.post('/add-campground', function (req, res) {
 }); 
 
 /*
-    ADD EMPLOYEE 
+    ADD Employees 
 */
 app.post('/add-employee-ajax', function(req, res) {
     // Capture the incoming data and parse it back to a JS object
@@ -316,7 +398,7 @@ app.post('/add-employee-ajax', function(req, res) {
 });
 
 /*
-    ADD PARTICIPANT
+    ADD Participants
 */
 app.post('/add-participant-ajax', function(req, res) {
     // Capture incoming data and parse it back to a JS object
@@ -349,7 +431,7 @@ app.post('/add-participant-ajax', function(req, res) {
 });
 
 /*
-    ADD PROGRAM
+    ADD Programs
 */
 app.post('/add-program', function (req, res) {
     let data = req.body; 
