@@ -3,53 +3,60 @@
     <title>Park Employees</title>
 </head>
 
-<h1>Park Employees</h1>
-<p>Find the park's employee information listed here.</p>
+<div class="entityContents">
+    <div class="tableDiv" id="employeeTableDiv">
+        <h2>Park Employees</h2>
+        <p>Find the park's employee information listed here.</p>
 
-{{!-- Create a table --}}
-<table id="employees-table">
+        {{!-- Create a table --}}
+        <table id="employees-table">
 
-    <thead>
+            <thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each employees.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each employees.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
 
-    {{!-- Body section --}}
-    <tbody>
+            {{!-- Body section --}}
+            <tbody>
 
-        {{!-- For each row, print the campground_id, campground_name, and num_campsites--}}
-        {{#each employees}}
-        <tr>
-            <td>{{this.employee_id}}</td>
-            <td>{{this.first_name}}</td>
-            <td>{{this.last_name}}</td>
-            <td>{{this.phone_number}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+                {{!-- For each row, print the campground_id, campground_name, and num_campsites--}}
+                {{#each employees}}
+                <tr>
+                    <td>{{this.employee_id}}</td>
+                    <td>{{this.first_name}}</td>
+                    <td>{{this.last_name}}</td>
+                    <td>{{this.phone_number}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
 
-{{!-- Form to add a new employee to table and DB --}}
-<h2>Add New Employee</h2>
-<p>To add a new employee to the system, please enter their information below and click 'Submit'.</p>
-<form id="add-employee-form-ajax">
-    <fieldset>
-        <label for="first_name">First Name: </label>
-            <input type="text" id="first_name" name="first_name" required>
-        <label for="last_name">Last Name: </label>
-            <input type="text" id="last_name" name="last_name" required>
-        <label for="phone_number">Phone Number: </label>
-            <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
-    </fieldset><br>
-    <input type="submit">
-</form>
+    </div>
 
-<script src="./js/add_employee.js"></script>
+        {{!-- Form to add a new employee to table and DB --}}
+    <div class="forms" id="newEmployeeDiv">
+        <h3>Add New Employee</h3>
+        <p>To add a new employee to the system, please enter their information below and click 'Submit'.</p>
+        <form id="add-employee-form-ajax">
+            <fieldset>
+                <label for="first_name">First Name: </label>
+                    <input type="text" id="first_name" name="first_name" required>
+                <label for="last_name">Last Name: </label>
+                    <input type="text" id="last_name" name="last_name" required>
+                <label for="phone_number">Phone Number: </label>
+                    <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+            </fieldset><br>
+            <input class="submitButton" type="submit">
+        </form>
+
+        <script src="./js/add_employee.js"></script>
+    </div>
+</div>

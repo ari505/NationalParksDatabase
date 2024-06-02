@@ -3,7 +3,9 @@
     <title>Park Programs</title>
 </head>
 
-<h1>Park Programs</h1>
+<div class="entityContents">
+<div class="tableDiv" id="programTableDiv">
+<h2>Park Programs</h2>
 <p>Find the park's programs listed here.</p>
 
 {{!-- Create a table --}}
@@ -38,9 +40,11 @@
         {{/each}}
     </tbody>
 </table>
+</div>
 
-        <!--form to add new campground-->
-<h2>Add a Program</h2>
+        <!--form to add new program-->
+<div class="forms" id="newProgramDiv">
+<h3>Add a Program</h3>
 <p>To add a new program, please enter the program below and click 'Submit'!</p>
     <form id="add-program-form">
         <fieldset>
@@ -59,8 +63,9 @@
                         <option value="3">3</option>
                         <option value="NULL">NULL</option>
                     </select>
-        </fieldset>
-        <input type="submit">
+        </fieldset><br>
+        <input class="submitButton" type="submit">
     </form><br>
 <script src="./js/add_program.js"></script>
-
+</div>
+</div>

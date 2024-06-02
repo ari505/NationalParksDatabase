@@ -1,29 +1,142 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(181, 252, 181);
+    background-color: rgb(151, 200, 151);
 }
 
-table { 
-    border: 3px solid rgb(26, 101, 187);
-    background-color: whitesmoke;
-    border-color: rgb(14, 216, 14);
-}
-th, td { 
-    border: 2px solid rgb(20, 158, 39);
+/***************************/
+/*navbar and header styling*/
+/***************************/
+#header{
+    display: flex;
+    background-color: rgb(18, 38, 26);
+    flex-direction: column;
+    width: 100%;
 }
 
-nav {
+nav{
+    background-color: rgb(45, 98, 65);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font: rgb(6, 94, 32);
+    text-decoration:none;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+}
+    
+a{
+    text-decoration: none;
+    color: rgba(208, 180, 104, 0.848);
+    font-weight: lighter;
+}
+
+.navDash {
+    color: rgba(23, 57, 57, 0.565);
+}
+
+/*******************/
+/*index.hbs styling*/
+/*******************/
+#homePage{
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+#homeText {
+    max-width: 500px;
+}
+
+th, td { 
+    border: 2px solid rgb(117, 148, 121);
+    background-color: rgba(218, 225, 197, 0.632);
+    padding: 6px;
 }
 
 img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    max-width: 50%;
 }
 
-form {
-    border-color: green;
+#header h1{
+    color: rgba(158, 123, 85, 0.841);
+    font-weight: lighter;
+    padding-left: 20px;
+}
+/*****************/
+/* Form styling */
+/****************/
+
+fieldset {
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px;
+    border-color: rgba(158, 123, 85, 0.351);
+}
+
+div#newEmployeeDiv, div#newParticipantDiv, div#newReservationDiv, div#newCampgroundDiv, div#newProgramDiv, div#updateReservationDiv {
+    max-width: 700px;
+   /* background-color: rgba(144, 156, 177, 0.353); not sure if i like this*/
+}
+
+
+input, select {
+    text-align: center;
+    background-color: rgba(218, 225, 197, 0.632);
+    border-color: rgb(227, 227, 208);
+}
+
+/*****************/
+/* table styling */
+/****************/
+
+.tableDiv{
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+/*******************************/
+/* Formatting forms and tables */
+/*******************************/
+
+#reservationForms {
+    display: flex; 
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: row;
+    padding-top: 30px;
+}
+
+
+.entityContents {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+
+/******************/
+/* Button styling */
+/******************/
+
+button {
+    
+    background-color: rgba(191, 112, 87, 0.351);
+    border: 2px solid rgba(158, 123, 85, 0.351);
+    border-radius: 10%;
+    padding-top: 2px; 
+    padding-bottom: 2px;
+}
+
+.submitButton {
+    background-color: rgba(218, 225, 197, 0.632);
+    border: 2px solid rgba(218, 225, 197, 0.632);
+    border-radius: 10%;
+    padding-top: 2px; 
+    padding-bottom: 2px;
 }

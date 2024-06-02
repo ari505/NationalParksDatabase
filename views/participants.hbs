@@ -2,60 +2,64 @@
     <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
     <title>Participants</title>
 </head>
+<div class="entityContents">
+    <div class="tableDiv" id="participantTableDiv">
+        <h2>Participants</h2>
+        <p>Find the participants information listed here.</p>
 
-<h1>Participants</h1>
-<p>Find the participants information listed here.</p>
+        {{!-- Create a table --}}
+        <table id="participants-table">
 
-{{!-- Create a table --}}
-<table id="participants-table">
+            <thead>
 
-    <thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each participants.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each participants.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
+            {{!-- Body section --}}
+            <tbody>
 
-    {{!-- Body section --}}
-    <tbody>
+                {{!-- For each row, print the participant_id, first_name, last_name, age, phone_number, and email --}}
+                {{#each participants}}
+                <tr>
+                    <td>{{this.participant_id}}</td>
+                    <td>{{this.first_name}}</td>
+                    <td>{{this.last_name}}</td>
+                    <td>{{this.age}}</td>
+                    <td>{{this.phone_number}}</td>
+                    <td>{{this.email}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{!-- Form to add a new participant to table and DB --}}
+    <div class="forms" id="newParticipantDiv">
+        <h3>Add a New Participant to our Park Community!</h3>
+        <p>To add a new participant to the system, please enter their information below and click 'Submit'.</p>
+        <form id="add-participant-form-ajax">
+            <fieldset>
+                <label for="first_name">First Name: </label>
+                    <input type="text" id="first_name" name="first_name" required>
+                <label for="last_name">Last Name: </label>
+                    <input type="text" id="last_name" name="last_name" required>
+                <label for="age">Age: </label>
+                    <input type="text" id="age" name="age" required>
+                <label for="phone_number">Phone Number: </label>
+                    <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                <label for="email">Email: </label>
+                    <input type="text" id="email" name="email" required>
+            </fieldset><br>
+            <input class="submitButton" type="submit">
+        </form>
 
-        {{!-- For each row, print the participant_id, first_name, last_name, age, phone_number, and email --}}
-        {{#each participants}}
-        <tr>
-            <td>{{this.participant_id}}</td>
-            <td>{{this.first_name}}</td>
-            <td>{{this.last_name}}</td>
-            <td>{{this.age}}</td>
-            <td>{{this.phone_number}}</td>
-            <td>{{this.email}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-{{!-- Form to add a new participant to table and DB --}}
-<h2>Add a New Participant to our Park Community!</h2>
-<p>To add a new participant to the system, please enter their information below and click 'Submit'.</p>
-<form id="add-participant-form-ajax">
-    <fieldset>
-        <label for="first_name">First Name: </label>
-            <input type="text" id="first_name" name="first_name" required>
-        <label for="last_name">Last Name: </label>
-            <input type="text" id="last_name" name="last_name" required><br><br>
-        <label for="age">Age: </label>
-            <input type="text" id="age" name="age" required>
-        <label for="phone_number">Phone Number: </label>
-            <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
-        <label for="email">Email: </label>
-            <input type="text" id="email" name="email" required>
-    </fieldset><br>
-    <input type="submit">
-</form>
-
-<script src="./js/add_participant.js"></script>
+        <script src="./js/add_participant.js"></script>
+    </div>
+</div>
