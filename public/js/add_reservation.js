@@ -10,6 +10,7 @@ addReservationForm.addEventListener("submit", function (e) {
     // Get form fields we need to get data from
     let inputEmployeeId = document.getElementById("employee_id");
     let inputDateTimeCreated = document.getElementById("date_time_created");
+    let inputParticipantId = document.getElementById("participant_id");
     let inputIsCampground = document.getElementById("is_campground");
     let inputCampgroundId = document.getElementById("campground_id");
     let inputProgramId = document.getElementById("program_id");
@@ -19,6 +20,7 @@ addReservationForm.addEventListener("submit", function (e) {
     // Get values from form fields
     let employeeIdValue = inputEmployeeId.value;
     let dateTimeCreatedValue = inputDateTimeCreated.value;
+    let participantIdValue = inputParticipantId.value;
     let isCampgroundValue = inputIsCampground.value;
     let campgroundIdValue = inputCampgroundId.value;
     let programIdValue = inputProgramId.value;
@@ -29,6 +31,7 @@ addReservationForm.addEventListener("submit", function (e) {
     let data = {
         employee_id: employeeIdValue,
         date_time_created: dateTimeCreatedValue,
+        participant_id: participantIdValue,
         is_campground: isCampgroundValue,
         campground_id: campgroundIdValue,
         program_id: programIdValue,
@@ -50,11 +53,13 @@ addReservationForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             addRowToTable(xhttp.response);
+            console.log(xhttp.response);
             location.reload();
 
             // Clear the input fields for another transaction
             inputEmployeeId.value = '';
             inputDateTimeCreated.value = '';
+            inputParticipantId.value = '';
             inputIsCampground.value = '';
             inputCampgroundId.value = '';
             inputProgramId.value = '';

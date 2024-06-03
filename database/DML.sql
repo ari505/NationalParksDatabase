@@ -28,33 +28,33 @@ employee_id, camping_start_date, camping_end_date)
 
 --Reservations has Participants
 INSERT INTO Reservations_has_Participants (reservation_id, participant_id)
-    VALUES 
-        (#reservation_id_from_input, #participant_id_from_input)
+    VALUES
+        ((SELECT reservation_id FROM Reservations WHERE employee_id = #employee_id and date_time_created = #date_time_created),
+            (SELECT participant_id FROM Participants WHERE participant_id = #participant_id));
 
 --All SELECT Queries
 
---SELECT everything from Employees
-SELECT first_name, last_name, phone_number FROM Employees
+--SELECT everything from Employees with aliases
+SELECT employee_id AS 'Employee ID', first_name AS 'First Name', last_name AS 'Last Name', phone_number AS 'Phone Number' FROM Employees;
 
---SELECT everything from Participants
-SELECT first_name, last_name, age, phone_number, email FROM Participants
+--SELECT everything from Participants with aliases
+SELECT participant_id AS 'Participant ID', first_name AS 'First Name', last_name AS 'Last Name', age AS 'Age', phone_number AS 'Phone Number', email AS 'Email' FROM Participants;
 
---SELECT everything from Campgrounds
-SELECT campground_name, num_campsites FROM Campgrounds;
+--SELECT everything from Campgrounds with aliases
+SELECT campground_id AS 'Campground ID', campground_name AS 'Campground Name', num_campsites AS 'Number of Campsites' FROM Campgrounds;
 
---SELECT everything from Programs
-SELECT name, capacity, location, date_time, employee_id FROM Programs 
+--SELECT everything from Programs with aliases and 
+SELECT program_id AS 'Program ID', name AS 'Name', capacity AS 'Capacity', location AS 'Location', date_time AS 'Date/Time', employee_id AS 'Employee ID' FROM Programs;
 
---SELECT everything from Reservations
-SELECT date_created, is_campground, campground_id, program_id, 
-employee_id, camping_start_date, camping_end_date FROM Reservations 
+--SELECT everything from Reservations with aliases
+SELECT reservation_id AS 'Reservation ID', employee_id AS 'Employee ID', date_time_created AS 'Date/Time Created', program_id AS 'Program ID', is_campground AS 'Campground?', campground_id AS 'Campground ID', camping_start_date AS 'Camping Start Date', camping_end_date AS 'Camping End Date' FROM Reservations; 
 
 --JOINS Reservations, Participants, Reservations_has_Participants to display relevant information in Reservations_has_Participants browse table
-SELECT Reservations_has_Participants.reservation_participant_id, Reservations.reservation_id, Participants.participant_id, 
-        Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
-    INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
-    INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
-        WHERE Participants.first_name = 'Andrew' and last_name = 'Kent' and phone_number = '564-798-0908';
+SELECT Reservations_has_Participants.reservation_participant_id AS 'Reservation-Participant ID', Reservations.reservation_id AS 'Reservation ID', Participants.participant_id AS 'Participant ID', 
+    Participants.first_name AS 'Participant First Name', Participants.last_name AS 'Participant Last Name', Reservations.program_id AS 'Program ID', Reservations.campground_id AS 'Campground ID' FROM Reservations
+INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
+INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
+ORDER BY Participants.participant_id`;
 
 --UPDATE and DELETE Queries 
 

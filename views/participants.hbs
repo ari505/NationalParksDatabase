@@ -29,12 +29,12 @@
                 {{!-- For each row, print the participant_id, first_name, last_name, age, phone_number, and email --}}
                 {{#each participants}}
                 <tr>
-                    <td>{{this.participant_id}}</td>
-                    <td>{{this.first_name}}</td>
-                    <td>{{this.last_name}}</td>
-                    <td>{{this.age}}</td>
-                    <td>{{this.phone_number}}</td>
-                    <td>{{this.email}}</td>
+                    <td>{{this.[Participant ID]}}</td>
+                    <td>{{this.[First Name]}}</td>
+                    <td>{{this.[Last Name]}}</td>
+                    <td>{{this.[Age]}}</td>
+                    <td>{{this.[Phone Number]}}</td>
+                    <td>{{this.[Email]}}</td>
                 </tr>
                 {{/each}}
             </tbody>

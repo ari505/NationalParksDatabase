@@ -30,12 +30,12 @@
         {{!-- For each row, print the program_id, name, capacity, location, date_time, and employee_id (FK)--}}
         {{#each programs}}
         <tr>
-            <td>{{this.program_id}}</td>
-            <td>{{this.name}}</td>
-            <td>{{this.capacity}}</td>
-            <td>{{this.location}}</td>
-            <td>{{this.date_time}}</td>
-            <td>{{this.employee_id}}</td>
+            <td>{{this.[Program ID]}}</td>
+            <td>{{this.[Name]}}</td>
+            <td>{{this.[Capacity]}}</td>
+            <td>{{this.[Location]}}</td>
+            <td>{{this.[Date/Time]}}</td>
+            <td>{{this.[Employee ID]}}</td>
         </tr>
         {{/each}}
     </tbody>
@@ -60,7 +60,7 @@
                     <select id="input-employee-id" name="input-employee-id">
                         <option value="">Select an Employee</option>
                         {{#each employees}}
-                        <option value="{{this.employee_id}}">{{this.employee_id}} - {{this.first_name}} {{this.last_name}}</option>
+                        <option value="{{this.[Employee ID]}}">{{this.[Employee ID]}} - {{this.[First Name]}} {{this.[Last Name]}}</option>
                         {{/each}}
                     </select>
         </fieldset><br>

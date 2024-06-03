@@ -31,13 +31,13 @@
             {{!-- For each row, print the reservation_id, employee_id, date_time_created, program_id, is_campground, campground_id, camping_start_date, camping_end_date, in order --}}
             {{#each data}}
             <tr>
-                <td>{{this.reservation_participant_id}}</td>
-                <td>{{this.reservation_id}}</td>
-                <td>{{this.participant_id}}</td>
-                <td>{{this.first_name}}</td>
-                <td>{{this.last_name}}</td>
-                <td>{{this.program_id}}</td> 
-                <td>{{this.campground_id}}</td>
+                <td>{{this.[Reservation-Participant ID]}}</td>
+                <td>{{this.[Reservation ID]}}</td>
+                <td>{{this.[Participant ID]}}</td>
+                <td>{{this.[Participant First Name]}}</td>
+                <td>{{this.[Participant Last Name]}}</td>
+                <td>{{this.[Program ID]}}</td> 
+                <td>{{this.[Campground ID]}}</td>
             </tr>
             {{/each}}
         </tbody>

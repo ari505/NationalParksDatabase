@@ -30,9 +30,9 @@
                 {{!-- For each row, print the campground_id, campground_name, and num_campsites--}}
                 {{#each campgrounds}}
                 <tr>
-                    <td>{{this.campground_id}}</td>
-                    <td>{{this.campground_name}}</td>
-                    <td>{{this.num_campsites}}</td>
+                    <td>{{this.[Campground ID]}}</td>
+                    <td>{{this.[Campground Name]}}</td>
+                    <td>{{this.[Number of Campsites]}}</td>
                 </tr>
                 {{/each}}
             </tbody>

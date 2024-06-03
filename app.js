@@ -22,7 +22,7 @@ app.use(express.static('public'))
 
 
 // Port
-PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -46,7 +46,7 @@ app.get('/', function(req, res)
 */
 app.get('/campgrounds', function(req, res)
     {  
-        let query1 = "SELECT * FROM Campgrounds;";
+        let query1 = "SELECT campground_id AS 'Campground ID', campground_name AS 'Campground Name', num_campsites AS 'Number of Campsites' FROM Campgrounds;";
 
         db.pool.query(query1, function (error, rows, fields) {
             res.render('campgrounds', {campgrounds: rows});       // Render the campgrounds.hbs file, and also send the renderer 
@@ -62,8 +62,7 @@ app.get('/reservations', function(req, res)
         let query2 = "SELECT * FROM Campgrounds;";
         let query3 = "SELECT * FROM Programs;";
         let query4 = "SELECT * FROM Participants;";
-        let query5 = "SELECT * FROM Reservations";
-        //let query5 = "SELECT reservation_id AS 'Reservation ID', employee_id AS 'Employee ID', date_time_created AS 'Date/Time Created', program_id AS 'Program ID', is_campground AS 'Campground?', campground_id AS 'Campground ID', camping_start_date AS 'Camping Start Date', camping_end_date AS 'Camping End Date' FROM Reservations;";
+        let query5 = "SELECT reservation_id AS 'Reservation ID', employee_id AS 'Employee ID', date_time_created AS 'Date/Time Created', program_id AS 'Program ID', is_campground AS 'Campground?', campground_id AS 'Campground ID', camping_start_date AS 'Camping Start Date', camping_end_date AS 'Camping End Date' FROM Reservations;";
     
         // Run the 1st query
         db.pool.query(query1, function(error, rows, fields) {           // Execute the query
@@ -89,15 +88,17 @@ app.get('/reservations', function(req, res)
                         // Save the Participants
                         let Participants = rows;
                     
+                        // Run the 5th query
                         db.pool.query(query5, (error, rows, fields) => {
                             
                             // Save the Reservations
                             let Reservations = rows;
                             return res.render('reservations', {data: Reservations, employees: Employees, campgrounds: Campgrounds, programs: Programs, participants: Participants});       // Render the reservations.hbs file, and also send the renderer
+                            
                         });
                     })
-                })                                                                                                          // an object where 'data' is equal to the 'rows' we
-            })                                                                                                              // received back from the query
+                })                                                                                                          
+            })                                                                                                              
         });                            
     });  
 
@@ -106,7 +107,7 @@ app.get('/reservations', function(req, res)
 */
 app.get('/employees', function(req, res)
     {  
-        let query1 = "SELECT * FROM Employees;"; 
+        let query1 = "SELECT employee_id AS 'Employee ID', first_name AS 'First Name', last_name AS 'Last Name', phone_number AS 'Phone Number' FROM Employees;"; 
         
         db.pool.query(query1, function(error, rows, fields) {
             res.render('employees', {employees: rows});         // Render the employees.hbs file, and also send the renderer
@@ -117,7 +118,7 @@ app.get('/employees', function(req, res)
 */
 app.get('/participants', function(req, res)
     {  
-        let query1 = "SELECT * FROM Participants;"; 
+        let query1 = "SELECT participant_id AS 'Participant ID', first_name AS 'First Name', last_name AS 'Last Name', age AS 'Age', phone_number AS 'Phone Number', email AS 'Email' FROM Participants;"; 
         
         db.pool.query(query1, function(error, rows, fields) {
             res.render('participants', {participants: rows});   // Render the participants.hbs file, and also send the renderer
@@ -128,8 +129,8 @@ app.get('/participants', function(req, res)
 */
 app.get('/programs', function(req, res)
     {  
-        let query1 = "SELECT * FROM Programs;"; 
-        let query2 = "SELECT * FROM Employees;"; 
+        let query1 = "SELECT program_id AS 'Program ID', name AS 'Name', capacity AS 'Capacity', location AS 'Location', date_time AS 'Date/Time', employee_id AS 'Employee ID' FROM Programs;"; 
+        let query2 = "SELECT employee_id AS 'Employee ID', first_name AS 'First Name', last_name AS 'Last Name', phone_number AS 'Phone Number' FROM Employees;"; 
 
         db.pool.query(query1, function(error, rows, fields) {
             let programs = rows; 
@@ -147,10 +148,11 @@ app.get('/reservations_has_participants', function(req, res)
 {  
     let query1 = "SELECT * FROM Participants;";
     let query2 = "SELECT * FROM Reservations";
-    let query3 = `SELECT Reservations_has_Participants.reservation_participant_id, Reservations.reservation_id, Participants.participant_id, 
-    Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
+    let query3 = `SELECT Reservations_has_Participants.reservation_participant_id AS 'Reservation-Participant ID', Reservations.reservation_id AS 'Reservation ID', Participants.participant_id AS 'Participant ID', 
+    Participants.first_name AS 'Participant First Name', Participants.last_name AS 'Participant Last Name', Reservations.program_id AS 'Program ID', Reservations.campground_id AS 'Campground ID' FROM Reservations
 INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
-INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id`;
+INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
+ORDER BY Participants.participant_id`;
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields) {           // Execute the query
@@ -206,37 +208,22 @@ app.post('/add_reservation', function(req, res) {
                 // If all went well, send the results of the query back.
                 else {
                     res.send(rows);
-                }
-            })
-        }
-    })
-});
-
-/*
-    ADD Reservations_has_Participants
-*/
-
-
-app.post('/add-reservation-has-participants', function (req, res) {
-    let data = req.body; 
-    
-    query1=`INSERT into Reservations_has_Participants (reservation_id, participant_id) VALUES (${data.reservation_id}, ${data.participant_id})`; 
-
-    db.pool.query(query1, function (error, row, fields) {
-        if (error) {
-            console.log(error);
-            res.sendStatus(400);
-        } else {
-            query2 = `SELECT Reservations_has_Participants.reservation_participant_id, Reservations.reservation_id, Participants.participant_id, 
-            Participants.first_name, Participants.last_name, Reservations.program_id, Reservations.campground_id FROM Reservations
-        INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
-        INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id`; 
-            db.pool.query(query2, function(error, rows, fields) {
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                } else {
-                    res.send(rows);
+                    query3 = `INSERT INTO Reservations_has_Participants (reservation_id, participant_id)
+                            VALUES
+                                ((SELECT reservation_id FROM Reservations WHERE employee_id = '${data.employee_id}' and date_time_created = '${data.date_time_created}'),
+                                    (SELECT participant_id FROM Participants WHERE participant_id = '${data.participant_id}'))`;
+                    db.pool.query(query3, function(error, rows, fields) {
+                        // If there was an error on the third query, send a 400
+                        if (error) {
+                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+                        else {
+                            console.log('Reservations_has_Participants updated with new entry.')
+                        }
+                    })
+                    
                 }
             })
         }
