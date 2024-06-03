@@ -6,7 +6,7 @@
 <div class="entityContents">
 <div class="tableDiv" id="programTableDiv">
 <h2>Park Programs</h2>
-<p>Find the park's programs listed here.</p>
+<p>Find all of the park programs listed here.</p>
 
 {{!-- Create a table --}}
 <table id="programs-table">
@@ -45,7 +45,7 @@
         <!--form to add new program-->
 <div class="forms" id="newProgramDiv">
 <h3>Add a Program</h3>
-<p>To add a new program, please enter the program below and click 'Submit'!</p>
+<p>To add a new program, please enter the program information below and click 'Submit'!</p>
     <form id="add-program-form">
         <fieldset>
                 <label for="input-program-name">Name: </label>
@@ -56,12 +56,12 @@
                     <input type="text" name="input-program-location" id="input-program-location" required>
                 <label for="input-program-datetime">Date/Time: </label>
                     <input type="datetime-local" name="input-program-datetime" id="input-program-datetime" required>
-                <label for="input-employee-id">Employee ID: </label> <!--foreign key-->
+                <label for="input-employee-id">Employee ID: </label> 
                     <select id="input-employee-id" name="input-employee-id">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="NULL">NULL</option>
+                        <option value="">Select an Employee</option>
+                        {{#each employees}}
+                        <option value="{{this.employee_id}}">{{this.employee_id}} - {{this.first_name}} {{this.last_name}}</option>
+                        {{/each}}
                     </select>
         </fieldset><br>
         <input class="submitButton" type="submit">

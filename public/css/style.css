@@ -1,6 +1,15 @@
+/*****************/
+/*general styling*/
+/*****************/
+
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: rgb(151, 200, 151);
+}
+
+h2, h3 {
+    color: rgb(70, 65, 56);
+
 }
 
 /***************************/
@@ -41,17 +50,20 @@ a{
     padding-top: 10px;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 50px;
+    gap: 70px;
 }
 
 #homeText {
-    max-width: 500px;
+    max-width: 560px;
 }
 
-th, td { 
-    border: 2px solid rgb(117, 148, 121);
-    background-color: rgba(218, 225, 197, 0.632);
-    padding: 6px;
+#welcomeMessage{
+    font-size: 17px;
+}
+
+li{
+    font-size: 16px;
+    padding: 4px;
 }
 
 img {
@@ -60,30 +72,31 @@ img {
 
 #header h1{
     color: rgba(133, 108, 82, 0.841);
-    font-weight: lighter;
+    font-weight: 300;
     padding-left: 20px;
 }
+
 /*****************/
 /* Form styling */
 /****************/
+
+div#newEmployeeDiv, div#newParticipantDiv, div#newReservationDiv, div#newCampgroundDiv, div#newProgramDiv, div#updateReservationDiv {
+    max-width: 700px;
+}
 
 fieldset {
     display: flex; 
     flex-direction: column; 
     gap: 12px;
     border-color: rgba(158, 123, 85, 0.351);
-    background-color: rgba(144, 156, 177, 0.353)
+    background-color: rgba(144, 156, 177, 0.353);
 }
-
-div#newEmployeeDiv, div#newParticipantDiv, div#newReservationDiv, div#newCampgroundDiv, div#newProgramDiv, div#updateReservationDiv {
-    max-width: 700px;
-}
-
 
 input, select {
     text-align: center;
     background-color: rgba(218, 225, 197, 0.632);
     border-color: rgb(227, 227, 208);
+    color: rgb(45, 43, 38);
 }
 
 /*****************/
@@ -98,6 +111,24 @@ input, select {
     text-align: center;
 }
 
+/*make reservation table more narrow to fit on screen*/
+#reservations-table {
+    padding: 0;
+    max-width: 90px;
+}
+
+/*resize cells*/
+th, td { 
+    border: 2px solid rgb(117, 148, 121);
+    background-color: rgba(218, 225, 197, 0.632);
+    padding: 6px;
+    color: rgb(45, 43, 38);
+}
+
+th {
+    color: rgb(29, 28, 26);
+}
+
 /*******************************/
 /* Formatting forms and tables */
 /*******************************/
@@ -110,7 +141,6 @@ input, select {
     padding-top: 30px;
 }
 
-
 .entityContents {
     display: flex; 
     flex-direction: column;
@@ -119,24 +149,51 @@ input, select {
     gap: 30px;
 }
 
-
 /******************/
 /* Button styling */
 /******************/
 
 button {
-    
     background-color: rgba(191, 112, 87, 0.351);
     border: 2px solid rgba(158, 123, 85, 0.351);
     border-radius: 10%;
     padding-top: 2px; 
     padding-bottom: 2px;
+    font-weight: bold;
 }
 
 .submitButton {
-    background-color: rgba(218, 225, 197, 0.632);
-    border: 2px solid rgba(218, 225, 197, 0.632);
+    background-color: rgba(79, 191, 48, 0.361);
+    border: 2px solid rgba(89, 142, 75, 0.632);
     border-radius: 10%;
-    padding-top: 2px; 
-    padding-bottom: 2px;
+    padding: 7px; 
+    font-weight: bold;
 }
+
+/******************/
+/*some hover effects*/
+/******************/
+.submitButton:hover, #deleteButton:hover{
+    box-shadow:-0.5px 2px 4px rgba(54, 58, 58, 0.366);
+    font-weight: bold;
+    cursor:pointer;
+    font-weight: bolder;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+input:hover {
+    cursor: text; 
+}
+
+th:hover, td:hover, p:hover, h4:hover, h3:hover, h2:hover, h1:hover, footer:hover {
+    cursor: default;
+}
+
+a:hover {
+    font-weight: normal;
+}
+
+

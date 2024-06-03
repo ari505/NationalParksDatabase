@@ -40,7 +40,7 @@
                 <td>{{this.campground_id}}</td> 
                 <td>{{this.camping_start_date}}</td>
                 <td>{{this.camping_end_date}}</td> 
-                <td><button onclick="delete_reservation({{this.reservation_id}})">Delete</button></td> 
+                <td><button id=deleteButton onclick="delete_reservation({{this.reservation_id}})">Delete</button></td> 
             </tr>
             {{/each}}
         </tbody>
@@ -59,10 +59,10 @@
                         <!--dropdown menu for employee_id-->
                         <label for="employee_id">Employee ID</label> <!--foreign key-->
                             <select id="employee_id" name="employee_id">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="NULL">NULL</option>
+                                <option value="">Select an Employee</option>
+                                {{#each employees}}
+                                <option value="{{this.employee_id}}">{{this.employee_id}} - {{this.first_name}} {{this.last_name}}</option>
+                                {{/each}}
                             </select>
                         <label for="date_time_created">Date Created</label>
                             <input type="datetime-local" id="date_time_created" name="date_time_created">
@@ -72,18 +72,18 @@
                         <!--dropdown menu for campground_id-->
                         <label for="campground_id">Campground ID</label> <!--foreign key-->
                             <select id="campground_id" name="campground_id">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="NULL">NULL</option>
+                                <option value="">Select a Campground</option>
+                                {{#each campgrounds}}
+                                <option value="{{this.campground_id}}">{{this.campground_id}} - {{this.campground_name}}</option>
+                                {{/each}}
                             </select>
                         <!--dropdown menu for program_id-->
                         <label for="program_id">Program ID</label> <!--foreign key-->
                             <select id="program_id" name="program_id">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="NULL">NULL</option>
+                                <option value="">Select a Program</option>
+                                {{#each programs}}
+                                <option value="{{this.program_id}}">{{this.program_id}} - {{this.name}}</option>
+                                {{/each}}
                             </select>
                         <label for="camping_start_date">Camping Start Date</label> 
                             <input type="date" id="camping_start_date" name="camping_start_date">
@@ -100,12 +100,12 @@
     <div class="forms" id="updateReservationDiv">
     <!--Form to update a reservation record-->
         <h3>Update Camping Dates</h3>
-        <p>To update a camping reservation dates, select the reservation ID from the drop-down menu on the left and the new dates on the right.</p>
+        <p>To update camping reservation dates, please select the reservation ID from the drop-down menu and enter the new dates.</p>
         <form id="update-camping-dates-form-ajax">
             <fieldset>
                 <label for="input-reservation-id">Reservation ID: </label>  
                 <select name="input-reservation-id" id="mySelect">
-                    <option value="test">Select a reservation</option>
+                    <option value="test">Select a Reservation</option>
                     {{#each data}}
                     <option value="{{this.reservation_id}}">{{this.reservation_id}}</option>
                     {{/each}}
