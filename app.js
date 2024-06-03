@@ -144,11 +144,16 @@ app.get('/participants', function(req, res)
 */
 app.get('/programs', function(req, res)
     {  
-        let query1 = "SELECT * FROM Programs"; 
+        let query1 = "SELECT * FROM Programs;"; 
+        let query2 = "SELECT * FROM Employees;"; 
 
-        db.pool.query(query1, function (error, rows, fields) {
-            res.render('programs', {programs: rows});     // Render the programs.hbs file, and also send the renderer
-        }) 
+        db.pool.query(query1, function(error, rows, fields) {
+            let programs = rows; 
+            db.pool.query(query2, (error, rows, fields) => {
+                let employees = rows; 
+                res.render('programs', {programs: programs, employees: employees});
+            })
+        });
     }); 
 
 /*
