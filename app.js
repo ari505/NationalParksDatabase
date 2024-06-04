@@ -22,7 +22,7 @@ app.use(express.static('public'))
 
 
 // Port
-PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
