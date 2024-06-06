@@ -9,12 +9,13 @@ body {
 
 h2, h3 {
     color: rgb(70, 65, 56);
-
 }
+
 
 /***************************/
 /*navbar and header styling*/
 /***************************/
+
 #header{
     display: flex;
     background-color: rgb(18, 38, 26);
@@ -44,6 +45,7 @@ a{
 /*******************/
 /*index.hbs styling*/
 /*******************/
+
 #homePage{
     display: flex;
     flex-direction: row;
@@ -51,10 +53,13 @@ a{
     justify-content: flex-start;
     align-items: flex-start;
     gap: 70px;
+    width: 100%
 }
 
 #homeText {
-    max-width: 560px;
+    width: 100%; 
+    margin-right: 20px;
+    
 }
 
 #welcomeMessage{
@@ -103,18 +108,20 @@ input, select {
 /* table styling */
 /****************/
 
+table {
+    border-collapse: collapse;
+    table-layout:fixed;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
 .tableDiv{
     display: flex; 
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
-}
-
-/*make reservation table more narrow to fit on screen*/
-#reservations-table {
-    padding: 0;
-    max-width: 90px;
+    width: 100%;
 }
 
 /*resize cells*/
@@ -170,9 +177,10 @@ button {
     font-weight: bold;
 }
 
-/******************/
+/*******************/
 /*some hover effects*/
 /******************/
+
 .submitButton:hover, #deleteButton:hover{
     box-shadow:-0.5px 2px 4px rgba(54, 58, 58, 0.366);
     font-weight: bold;
@@ -188,7 +196,7 @@ input:hover {
     cursor: text; 
 }
 
-th:hover, td:hover, p:hover, h4:hover, h3:hover, h2:hover, h1:hover, footer:hover {
+th:hover, td:hover, p:hover, h4:hover, h3:hover, h2:hover, h1:hover, footer:hover, li:hover {
     cursor: default;
 }
 
@@ -196,4 +204,29 @@ a:hover {
     font-weight: normal;
 }
 
+/*******************/
+/*Responsive queries*/
+/*******************/
 
+@media(min-width: 1450px) {
+
+    #welcomeMessage{
+        font-size: 22px;
+    }
+    
+    li{
+        font-size: 21px;
+    }
+
+    p{
+        font-size: 17px;
+    }
+}
+
+@media(max-width: 880px) {
+    td, th {
+        word-wrap:break-word;
+   
+        max-width: 50px;
+    }
+}
