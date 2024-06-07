@@ -1,3 +1,10 @@
+// add_employee.js
+
+// Citation for confirm():
+// Date: 6/6/24
+// Adapted from:
+// Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
+
 // Get objects we need to modify
 let addEmployeeForm = document.getElementById('add-employee-form-ajax');
 
@@ -5,6 +12,9 @@ let addEmployeeForm = document.getElementById('add-employee-form-ajax');
 addEmployeeForm.addEventListener("submit", function(e) {
     // Prevent from from submitting
     e.preventDefault();
+
+    // Show alert to confirm update
+    if (confirm("Are you sure you want to add this employee?") == true) {
 
     // Get form fields we need to get data from
     let inputFirstName = document.getElementById("first_name");
@@ -33,6 +43,7 @@ addEmployeeForm.addEventListener("submit", function(e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             // Add the new data to the table
             addRowToTable(xhttp.response);
+            alert("Success!");
 
             // Clear the input fields for another transaction
             inputFirstName.value = '';
@@ -47,7 +58,7 @@ addEmployeeForm.addEventListener("submit", function(e) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
-});
+}});
 
 // Create single from from an Object representing a single record from Employees
 addRowToTable = (data) => {

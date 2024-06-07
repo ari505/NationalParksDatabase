@@ -1,3 +1,11 @@
+// add_reservation.js
+
+// Citation for confirm():
+// Date: 6/6/24
+// Adapted from:
+// Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
+
+
 // Get the objects we need to modify
 let addReservationForm = document.getElementById('add-reservation-form-ajax');
 
@@ -6,6 +14,9 @@ addReservationForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
+
+    // Show alert to confirm update
+    if (confirm("Are you sure you want to add this reservation?") == true) {
 
     // Get form fields we need to get data from
     let inputEmployeeId = document.getElementById("employee_id");
@@ -16,7 +27,7 @@ addReservationForm.addEventListener("submit", function (e) {
     let inputProgramId = document.getElementById("program_id");
     let inputCampingStartDate = document.getElementById("camping_start_date");
     let inputCampingEndDate = document.getElementById("camping_end_date");
-
+    
     // Get values from form fields
     let employeeIdValue = inputEmployeeId.value;
     let dateTimeCreatedValue = inputDateTimeCreated.value;
@@ -54,6 +65,7 @@ addReservationForm.addEventListener("submit", function (e) {
             // Add the new data to the table
             addRowToTable(xhttp.response);
             console.log(xhttp.response);
+            alert("Success!");
             location.reload();
 
             // Clear the input fields for another transaction
@@ -68,13 +80,14 @@ addReservationForm.addEventListener("submit", function (e) {
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
+            alert("There was an error with the input. Try again?")
         }
     }
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
-});
+}});
 
 // Creates a single row from an Object representing a single record from Reservations
 addRowToTable = (data) => {

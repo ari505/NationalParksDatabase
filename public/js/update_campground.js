@@ -1,42 +1,42 @@
+// update_campground.js
+
+// Citation for confirm():
+// Date: 6/6/24
+// Adapted from:
+// Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
+
+
 // Get the objects we need to modify
-let updateCampingDatesForm = document.getElementById('update-camping-dates-form-ajax')
+let updateCampgroundForm = document.getElementById('update-campground-form-ajax')
 
 // Modify the objects we need 
-updateCampingDatesForm.addEventListener("submit", function (e) {
+updateCampgroundForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
-
+    
     // Show alert to confirm update
     if (confirm("Are you sure you want to update this reservation?") == true) {
 
     // Get form fields we need to get data from
-    let inputReservationId = document.getElementById("input-reservation-id");
-    let inputCampingStartDate = document.getElementById("input-camping-start-date");
-    let inputCampingEndDate = document.getElementById("input-camping-end-date");
+    let inputReservationId = document.getElementById("input-reservation-id-campground");
+    let inputCampgroundId = document.getElementById("input-campground-id");
 
     // Get the values from the form fields
     let reservationIdValue = inputReservationId.value;
-    let campingStartDateValue = inputCampingStartDate.value;
-    let campingEndDateValue = inputCampingEndDate.value;
-
-    // // Handle case where dates are left blank
-    // if (isNaN(campingStartDateValue) || isNaN(campingEndDateValue)) {
-    //     return;
-    // }
+    let campgroundIdValue = inputCampgroundId.value;
 
     // Put our data we want to send in a javascript object 
     let data = {
         reservationId: reservationIdValue,
-        campingStartDate: campingStartDateValue,
-        campingEndDate: campingEndDateValue,
+        campgroundId: campgroundIdValue
     }
 
     console.log(data);
 
     // Set up our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "/put-reservation-ajax", true);
+    xhttp.open("PUT", "/put-reservation-campground-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -72,13 +72,12 @@ function updateRow(data, reservationId) {
             // Get the location of the row where we found the matching reservation ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of camping start date
-            let tdStartDate = updateRowIndex.getElementsByTagName("td")[6];
-            let tdEndDate = updateRowIndex.getElementsByTagName("td")[7];
+            // Get td of campground
+            let tdCampgroundId = updateRowIndex.getElementsByTagName("td")[5];
 
-            // Reassign camping start/end date values we updated to
-            tdStartDate.innerHTML = parsedData[0].camping_start_date;
-            tdEndDate.innerHTML = parsedData[0].camping_end_date;
+            // Reassign campground
+            tdCampgroundId.innerHTML = parsedData[0].campgroundId;
+            
         }
     }
 };

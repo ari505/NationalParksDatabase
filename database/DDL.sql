@@ -61,7 +61,8 @@ CREATE OR REPLACE TABLE Reservations (
     camping_end_date date,
     PRIMARY KEY (reservation_id),
     FOREIGN KEY (employee_id) REFERENCES Employees(employee_id),
-    FOREIGN KEY (campground_id) REFERENCES Campgrounds(campground_id),
+    FOREIGN KEY (campground_id) REFERENCES Campgrounds(campground_id)
+    ON UPDATE CASCADE,
     FOREIGN KEY (program_id) REFERENCES Programs(program_id)
 );
 
@@ -111,7 +112,7 @@ INSERT INTO Programs(name, capacity, location, date_time, employee_id)
 INSERT INTO Reservations (date_time_created, is_campground, campground_id, program_id, 
 employee_id, camping_start_date, camping_end_date)
     VALUES
-    ('2023-10-15 09:09:09', 1, 
+    ('2023-10-15 09:09:09', 0, 
         NULL, (SELECT program_id FROM Programs WHERE name = 'Outdoor Restorative Yoga'), 
         (SELECT employee_id FROM Employees WHERE first_name = 'Viviana' and last_name = 'McIntyre'),
         NULL, NULL),
@@ -119,7 +120,7 @@ employee_id, camping_start_date, camping_end_date)
         (SELECT campground_id FROM Campgrounds WHERE campground_name = 'Lower Pines'), NULL,
         (SELECT employee_id FROM Employees WHERE first_name = 'Jake' and last_name = 'Santana'),
         "2024-05-04", "2024-05-11"),
-    ('2024-03-18 10:05:02', 1,
+    ('2024-03-18 10:05:02', 0,
         NULL, (SELECT program_id FROM Programs WHERE name = 'Park Tour'),
         (SELECT employee_id FROM Employees WHERE first_name = 'Noel' and last_name = 'Freeze'),
         NULL, NULL),

@@ -1,3 +1,5 @@
+// delete_reservation.js
+
 //send data to javascript object
 function delete_reservation(reservation_id){
     let data = {
@@ -14,6 +16,7 @@ function delete_reservation(reservation_id){
         if (xhttp.readyState == 4 && xhttp.status == 204) {
             //remove the data from the table
             deleteRow(reservation_id);
+            alert("Success!");
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")

@@ -1,7 +1,17 @@
+// add_programs.js
+
+// Citation for confirm():
+// Date: 6/6/24
+// Adapted from:
+// Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
+
 let addProgramForm = document.getElementById('add-program-form'); 
 
 addProgramForm.addEventListener("submit", function (e) {
     e.preventDefault(); 
+
+    // Show alert to confirm update
+    if (confirm("Are you sure you want to add this program?") == true) {
     
     let inputName = document.getElementById("input-program-name"); 
     let inputCapacity = document.getElementById("input-program-cap"); 
@@ -34,6 +44,7 @@ addProgramForm.addEventListener("submit", function (e) {
             // Add the new data to the table
             addRowToTable(xhttp.response);
             location.reload();
+            alert("Success!");
 
             // Clear the input fields for another transaction
             inputName.value = '';
@@ -49,7 +60,7 @@ addProgramForm.addEventListener("submit", function (e) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
-})
+}});
 
 addRowToTable = (data) => {
     let currentTable = document.getElementById("programs-table"); 

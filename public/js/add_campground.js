@@ -1,7 +1,17 @@
+// add_campground.js
+
+// Citation for confirm():
+// Date: 6/6/24
+// Adapted from:
+// Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
+
 let addCampgroundForm = document.getElementById('add-campground-form');
 
 addCampgroundForm.addEventListener("submit", function (e) {
     e.preventDefault(); 
+
+    // Show alert to confirm update
+    if (confirm("Are you sure you want to add this campground?") == true) {
 
     //form fields 
     let inputCampgroundName = document.getElementById("input-cg-name"); 
@@ -29,6 +39,7 @@ addCampgroundForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             addRowToTable(xhttp.response);
+            alert("Success!");
 
             // Clear the input fields for another transaction
             inputCampgroundName.value = '';
@@ -40,7 +51,7 @@ addCampgroundForm.addEventListener("submit", function (e) {
     }   
     xhttp.send(JSON.stringify(data));
 
-})
+}});
 
 addRowToTable = (data) => {
     //current table reference

@@ -1,3 +1,10 @@
+// add_participant
+
+// Citation for confirm():
+// Date: 6/6/24
+// Adapted from:
+// Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
+
 // Get objects we need to modify
 let addParticipantForm = document.getElementById('add-participant-form-ajax');
 
@@ -5,6 +12,9 @@ let addParticipantForm = document.getElementById('add-participant-form-ajax');
 addParticipantForm.addEventListener("submit", function(e) {
     // Prevent form submission
     e.preventDefault();
+
+    // Show alert to confirm update
+    if (confirm("Are you sure you want to add this participant?") == true) {
 
     // Get form fields we need to get data from
     let inputFirstName = document.getElementById("first_name");
@@ -40,6 +50,7 @@ addParticipantForm.addEventListener("submit", function(e) {
             // Add the new data to the table
             addRowToTable(xhttp.response);
             location.reload();
+            alert("Success!");
 
             // Clear the input fields for another transaction
             inputFirstName.value = '';
@@ -56,7 +67,7 @@ addParticipantForm.addEventListener("submit", function(e) {
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
-});
+}});
 
 // Create single from from an Object representing a single record from Employees
 addRowToTable = (data) => {

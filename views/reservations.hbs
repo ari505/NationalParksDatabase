@@ -1,5 +1,10 @@
 <!-- reservations.hbs -->
 
+{{!-- Citation for deleteConfirm():
+Date: 6/6/24
+Adapted from:
+Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp --}}
+
 <head>
     <meta charset="utf-8"> <!--allows for all characters to be entered into html file-->
     <title>Manage Park Reservations</title>
@@ -40,11 +45,20 @@
                 <td>{{this.[Campground ID]}}</td> 
                 <td>{{this.[Camping Start Date]}}</td>
                 <td>{{this.[Camping End Date]}}</td> 
-                <td><button id=deleteButton onclick="delete_reservation({{this.[Reservation ID]}})">Delete</button></td> 
+                <td><button id=deleteButton onClick="deleteConfirm()">Delete</button></td> 
+                <script>
+                    function deleteConfirm() {
+                        if (confirm("Are you sure you want to delete this reservation?") == true) {
+                            delete_reservation({{this.[Reservation ID]}})
+                        }
+                    }   
+                </script>
             </tr>
             {{/each}}
         </tbody>
     </table>
+    
+    
     <script src="./js/delete_reservation.js"></script>
 </div>
 
@@ -83,7 +97,7 @@
                         <label for="campground_id">Campground ID: </label> <!--foreign key-->
                             <select id="campground_id" name="campground_id">
                                 <option value="NULL">Select a Campground</option>
-                                <option value="NULL">NULL (if Program Reservation)</option>
+                                <option value="NULL">NULL</option>
                                 {{#each campgrounds}}
                                 <option value="{{this.campground_id}}">{{this.campground_id}} - {{this.campground_name}}</option>
                                 {{/each}}
@@ -110,13 +124,13 @@
     </div>
 
     <div class="forms" id="updateReservationDiv">
-    <!--Form to update a reservation record-->
+    <!--Form to update a reservation dates record-->
         <h3>Update Camping Dates</h3>
         <p>To update camping reservation dates, please select the reservation ID from the drop-down menu and enter the new dates.</p>
         <form id="update-camping-dates-form-ajax">
             <fieldset>
                 <label for="input-reservation-id">Reservation ID: </label>  
-                <select name="input-reservation-id" id="mySelect">
+                <select name="input-reservation-id" id="input-reservation-id">
                     <option value="test">Select a Reservation</option>
                     {{#each data}}
                     <option value="{{this.[Reservation ID]}}">{{this.[Reservation ID]}}</option>
@@ -129,6 +143,7 @@
                         id="input-camping-start-date" 
                         name="input-camping-start-date"
                         required />
+
                 <label for="input-camping-end-date">Camping End Date: </label>
                     <input
                         type="date"
@@ -141,6 +156,38 @@
         </form>
 
         <script src="./js/update_camping_dates.js"></script>
+    </div>
+</div>
+<div>
+
+<div class="forms" id="updateReservationDiv">
+    <!--Form to update a reservation campground record-->
+        <h3>Update Campground</h3>
+        <p>To update camping reservation campground, please select the reservation ID from the drop-down menu and select another campground.</p>
+        <form id="update-campground-form-ajax">
+            <fieldset>
+                <label for="input-reservation-id">Reservation ID: </label>  
+                <select name="input-reservation-id" id="input-reservation-id-campground">
+                    <option value="test">Select a Reservation</option>
+                    {{#each data}}
+                    <option value="{{this.[Reservation ID]}}">{{this.[Reservation ID]}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="input-campground-id">Campground ID: </label>  
+                <select name="input-campground-id" id="input-campground-id">
+                    <option value="test">Select a Campground</option>
+                    <option value=NULL>NULL</option>
+                    {{#each campgrounds}}
+                    <option value="{{this.campground_id}}">{{this.campground_id}} - {{this.campground_name}}</option>
+                    {{/each}}
+                </select>
+            </fieldset> <br>
+            <input class="submitButton" type="submit">
+
+        </form>
+
+        <script src="./js/update_campground.js"></script>
     </div>
 </div>
 <div>

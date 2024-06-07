@@ -1,10 +1,10 @@
+// app.js
+
 // Citation for the following functions:
 // Date: 5/30/24
 // Adapted from:
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
-
-// app.js
 
 /*
     SETUP
@@ -22,7 +22,7 @@ app.use(express.static('public'))
 
 
 // Port
-PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 55555;                 // Set a port number at the top so it's easy to change in the future
 
 
 // Handlebars
@@ -183,6 +183,13 @@ app.post('/add_reservation', function(req, res) {
     // Capture incoming data and parse it back to a JS object
     let data = req.body;
 
+    // // Use debugger to see if conditional statement works
+    // console.debug()
+    // let camping_end_date = data.camping_end_date;
+    // if (camping_end_date == "") {
+    //     camping_end_date = null
+    // }
+
     // Create query and run it in database
     query1 = `INSERT INTO Reservations (employee_id, date_time_created, is_campground, campground_id, program_id, camping_start_date, camping_end_date) 
             VALUES
@@ -196,8 +203,8 @@ app.post('/add_reservation', function(req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on Reservations
-            query2 = `SELECT reservation_id, employee_id, date_time_created, IFNULL(program_id, 'N/A'), is_campground, IFNULL(campground_id, 'N/A'), IFNULL(program_id, 'N/A') FROM Reservations;`;
+            // If there was no error, perform a SELECT on Reservations
+            query2 = `SELECT reservation_id, employee_id, date_time_created, IFNULL(program_id, 'N/A'), is_campground, IFNULL(campground_id, 'N/A'), IFNULL(program_id, 'N/A'), camping_start_date, camping_end_date FROM Reservations;`;
             db.pool.query(query2, function(error, rows, fields) {
                 // If there was an error on the second query, send a 400
                 if (error) {
@@ -251,7 +258,7 @@ app.delete('/delete-reservation-ajax/', function(req, res, next) {
 }); 
 
 /*
-    UPDATE Reservations
+    UPDATE Reservations - camping dates
 */
 app.put('/put-reservation-ajax', function(req, res, next) {
     let data = req.body;
@@ -306,13 +313,56 @@ app.put('/put-reservation-ajax', function(req, res, next) {
 });
 
 /*
+    UPDATE Reservations - campground
+*/
+app.put('/put-reservation-campground-ajax', function(req, res, next) {
+    let data = req.body;
+
+    // Convert NULL from string
+    let campground_id = data.campgroundId;
+    if (campground_id == 'NULL') {
+        campground_id = null
+    };
+
+    let reservationId = parseInt(data.reservationId);
+    let campgroundId = campground_id;
+
+    let queryUpdateCampgroundId = `UPDATE Reservations SET campground_id = ? WHERE reservation_id = ?`;
+    let selectChangedReservation = `SELECT * FROM Reservations WHERE reservation_id = ?`
+    
+
+        // Run 1st query
+        db.pool.query(queryUpdateCampgroundId, [campgroundId, reservationId], function(error, rows, fields) {
+            
+            if(error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating bad request.
+            console.log(error);
+            res.sendStatus(400);
+            }
+                // If there was no error, we run second query and return that data so we can use it to update the 
+                // table on the front-end
+                else {
+                    // Run 2nd query
+                    db.pool.query(selectChangedReservation, [reservationId], function (error, rows, fields) {
+
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } else {
+                            res.send(rows);
+                        }
+                    })
+                }
+        })
+});
+
+/*
     ADD Campgrounds
 */
 app.post('/add-campground', function (req, res) {
     let data = req.body; 
 
     //capture null numbers for num campsites
-
     let num_campsites = parseInt(data.num_campsites);
     if (isNaN(num_campsites))
     {
