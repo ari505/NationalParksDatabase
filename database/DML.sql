@@ -80,4 +80,4 @@ SELECT Reservations_has_Participants.reservation_participant_id AS 'Reservation-
     Participants.first_name AS 'Participant First Name', Participants.last_name AS 'Participant Last Name', Reservations.program_id AS 'Program ID', Reservations.campground_id AS 'Campground ID' FROM Reservations
 INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
 INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
-ORDER BY Participants.participant_id`;
+ORDER BY Reservations_has_Participants.reservation_participant_id`;
