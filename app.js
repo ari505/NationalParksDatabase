@@ -20,17 +20,14 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
-
 // Port
 PORT        = 55565;                 // Set a port number at the top so it's easy to change in the future
-
 
 // Handlebars
 const { engine } = require('express-handlebars');
 var exphbs = require('express-handlebars');     // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
-
 
 /*
     ROUTES
@@ -113,6 +110,7 @@ app.get('/employees', function(req, res)
             res.render('employees', {employees: rows});         // Render the employees.hbs file, and also send the renderer
         }) 
     });
+
 /*
     SELECT Participants
 */
@@ -124,6 +122,7 @@ app.get('/participants', function(req, res)
             res.render('participants', {participants: rows});   // Render the participants.hbs file, and also send the renderer
         }) 
     }); 
+
 /*
     SELECT Programs
 */
@@ -145,36 +144,36 @@ app.get('/programs', function(req, res)
     SELECT Reservations_has_Participants
 */
 app.get('/reservations_has_participants', function(req, res)
-{  
-    let query1 = "SELECT * FROM Participants;";
-    let query2 = "SELECT * FROM Reservations";
-    let query3 = `SELECT Reservations_has_Participants.reservation_participant_id AS 'Reservation-Participant ID', Reservations.reservation_id AS 'Reservation ID', Participants.participant_id AS 'Participant ID', 
-    Participants.first_name AS 'Participant First Name', Participants.last_name AS 'Participant Last Name', Reservations.program_id AS 'Program ID', Reservations.campground_id AS 'Campground ID' FROM Reservations
-INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
-INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
-ORDER BY Participants.participant_id`;
+    {  
+        let query1 = "SELECT * FROM Participants;";
+        let query2 = "SELECT * FROM Reservations";
+        let query3 = `SELECT Reservations_has_Participants.reservation_participant_id AS 'Reservation-Participant ID', Reservations.reservation_id AS 'Reservation ID', Participants.participant_id AS 'Participant ID', 
+        Participants.first_name AS 'Participant First Name', Participants.last_name AS 'Participant Last Name', Reservations.program_id AS 'Program ID', Reservations.campground_id AS 'Campground ID' FROM Reservations
+    INNER JOIN Reservations_has_Participants ON Reservations_has_Participants.reservation_id = Reservations.reservation_id
+    INNER JOIN Participants ON Participants.participant_id = Reservations_has_Participants.participant_id
+    ORDER BY Reservations_has_Participants.reservation_participant_id`;
 
-    // Run the 1st query
-    db.pool.query(query1, function(error, rows, fields) {           // Execute the query
+        // Run the 1st query
+        db.pool.query(query1, function(error, rows, fields) {           // Execute the query
 
-        // Save the Employees
-        let Participants = rows;
+            // Save the Employees
+            let Participants = rows;
 
-        // Run the 2nd query
-        db.pool.query(query2, (error, rows, fields) => {
+            // Run the 2nd query
+            db.pool.query(query2, (error, rows, fields) => {
 
-            // Save the Campgrounds
-            let Reservations = rows;
-            
-                //run the 3rd query
-                db.pool.query(query3, (error, rows, fields) => {
-                    let Reservations_has_Participants = rows;
-                    return res.render('reservations_has_participants', {data: Reservations_has_Participants, reservations: Reservations, participants: Participants
-                });
-            })     
-        })
-    });                                                                                                        
-});                                                                                                             
+                // Save the Campgrounds
+                let Reservations = rows;
+                
+                    //run the 3rd query
+                    db.pool.query(query3, (error, rows, fields) => {
+                        let Reservations_has_Participants = rows;
+                        return res.render('reservations_has_participants', {data: Reservations_has_Participants, reservations: Reservations, participants: Participants
+                    });
+                })     
+            })
+        });                                                                                                        
+    });                                                                                                             
     
 /*
     ADD Reservations

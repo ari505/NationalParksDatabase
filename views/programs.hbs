@@ -4,68 +4,68 @@
 </head>
 
 <div class="entityContents">
-<div class="tableDiv" id="programTableDiv">
-<h2>Park Programs</h2>
-<p>Find all of the park programs listed here.</p>
+        <div class="tableDiv" id="programTableDiv">
+        <h2>Park Programs</h2>
+        <p>Find all of the park programs listed here.</p>
 
-{{!-- Create a table --}}
-<table id="programs-table">
+        {{!-- Create a table --}}
+        <table id="programs-table">
 
-    <thead>
+            <thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each programs.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each programs.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
 
-    {{!-- Body section --}}
-    <tbody>
+            {{!-- Body section --}}
+            <tbody>
 
-        {{!-- For each row, print the program_id, name, capacity, location, date_time, and employee_id (FK)--}}
-        {{#each programs}}
-        <tr>
-            <td>{{this.[Program ID]}}</td>
-            <td>{{this.[Name]}}</td>
-            <td>{{this.[Capacity]}}</td>
-            <td>{{this.[Location]}}</td>
-            <td>{{this.[Date/Time]}}</td>
-            <td>{{this.[Employee ID]}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-</div>
+                {{!-- For each row, print the program_id, name, capacity, location, date_time, and employee_id (FK)--}}
+                {{#each programs}}
+                <tr>
+                    <td>{{this.[Program ID]}}</td>
+                    <td>{{this.[Name]}}</td>
+                    <td>{{this.[Capacity]}}</td>
+                    <td>{{this.[Location]}}</td>
+                    <td>{{this.[Date/Time]}}</td>
+                    <td>{{this.[Employee ID]}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 
         <!--form to add new program-->
-<div class="forms" id="newProgramDiv">
-<h3>Add a Program</h3>
-<p>To add a new program, please enter the program information below and click 'Submit'!</p>
-    <form id="add-program-form">
-        <fieldset>
-                <label for="input-program-name">Name: </label>
-                    <input type="text" name="input-program-name" id="input-program-name" required>
-                <label for="input-program-cap">Capacity:  </label>
-                    <input type="number" name="input-program-cap" id="input-program-cap" required>
-                <label for="input-program-location">Location: </label>
-                    <input type="text" name="input-program-location" id="input-program-location" required>
-                <label for="input-program-datetime">Date/Time: </label>
-                    <input type="datetime-local" name="input-program-datetime" id="input-program-datetime" required>
-                <label for="input-employee-id">Employee ID: </label> 
-                    <select id="input-employee-id" name="input-employee-id">
-                        <option value="">Select an Employee</option>
-                        {{#each employees}}
-                        <option value="{{this.[Employee ID]}}">{{this.[Employee ID]}} - {{this.[First Name]}} {{this.[Last Name]}}</option>
-                        {{/each}}
-                    </select>
-        </fieldset><br>
-        <input class="submitButton" type="submit">
-    </form><br>
-<script src="./js/add_program.js"></script>
-</div>
+    <div class="forms" id="newProgramDiv">
+        <h3>Add a Program</h3>
+        <p>To add a new program, please enter the program information below and click 'Submit'!</p>
+            <form id="add-program-form">
+                <fieldset>
+                        <label for="input-program-name">Name: </label>
+                            <input type="text" name="input-program-name" id="input-program-name" required>
+                        <label for="input-program-cap">Capacity:  </label>
+                            <input type="number" name="input-program-cap" id="input-program-cap" required>
+                        <label for="input-program-location">Location: </label>
+                            <input type="text" name="input-program-location" id="input-program-location" required>
+                        <label for="input-program-datetime">Date/Time: </label>
+                            <input type="datetime-local" name="input-program-datetime" id="input-program-datetime" required>
+                        <label for="input-employee-id">Employee ID: </label> 
+                            <select id="input-employee-id" name="input-employee-id">
+                                <option value="">Select an Employee</option>
+                                {{#each employees}}
+                                <option value="{{this.[Employee ID]}}">{{this.[Employee ID]}} - {{this.[First Name]}} {{this.[Last Name]}}</option>
+                                {{/each}}
+                            </select>
+                </fieldset><br>
+                <input class="submitButton" type="submit">
+            </form><br>
+        <script src="./js/add_program.js"></script>
+    </div>
 </div>
