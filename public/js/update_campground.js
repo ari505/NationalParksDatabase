@@ -1,9 +1,14 @@
 // update_campground.js
 
-// Citation for confirm():
-// Date: 6/6/24
-// Adapted from:
-// Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
+// Citation for all code with the exception of confirm():
+// Date: 06/07/24
+// Adapted from: Sample code privided in class
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+// Citation for all code with the exception of confirm():
+// Date: 06/07/24
+// Adapted from: Sample code privided in class
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 
 // Get the objects we need to modify

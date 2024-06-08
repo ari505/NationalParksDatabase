@@ -1,5 +1,10 @@
 // delete_reservation.js
 
+// Citation for all code:
+// Date: 06/07/24
+// Adapted from: Sample code privided in class
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 //send data to javascript object
 function delete_reservation(reservation_id){
     let data = {

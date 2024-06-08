@@ -1,3 +1,15 @@
+// update_campging_dates.js
+
+// Citation for all code with the exception of confirm():
+// Date: 06/07/24
+// Adapted from: Sample code privided in class
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+// Citation for all code with the exception of confirm():
+// Date: 06/07/24
+// Adapted from: Sample code privided in class
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // Get the objects we need to modify
 let updateCampingDatesForm = document.getElementById('update-camping-dates-form-ajax')
 
@@ -19,11 +31,6 @@ updateCampingDatesForm.addEventListener("submit", function (e) {
     let reservationIdValue = inputReservationId.value;
     let campingStartDateValue = inputCampingStartDate.value;
     let campingEndDateValue = inputCampingEndDate.value;
-
-    // // Handle case where dates are left blank
-    // if (isNaN(campingStartDateValue) || isNaN(campingEndDateValue)) {
-    //     return;
-    // }
 
     // Put our data we want to send in a javascript object 
     let data = {

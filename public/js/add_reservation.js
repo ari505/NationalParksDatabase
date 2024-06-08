@@ -1,8 +1,13 @@
 // add_reservation.js
 
+// Citation for all code with the exception of confirm():
+// Date: 06/07/24
+// Adapted from: Sample code privided in class
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // Citation for confirm():
 // Date: 6/6/24
-// Adapted from:
+// Adapted from: confirm alert function at the given link 
 // Source URL: https://www.w3schools.com/jsref/met_win_confirm.asp
 
 

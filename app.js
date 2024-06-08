@@ -1,10 +1,9 @@
 // app.js
 
-// Citation for the following functions:
-// Date: 5/30/24
-// Adapted from:
+// Citation for all code, but logic is all original especially with M:N functionality
+// Date: 06/07/24
+// Adapted from: Sample code privided in class
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 
 /*
     SETUP
